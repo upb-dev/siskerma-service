@@ -4,4 +4,4 @@ from siskerma.app.models import User
 class UserSerializer(BaseModelSerializer):
     class Meta:
         model = User
-        fields = '__all___'
+        fields = '__all__'

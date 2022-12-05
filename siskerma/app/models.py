@@ -4,6 +4,9 @@ import uuid
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import validate_email
 from django.db import models
+from datetime import datetime
+
+from dateutil.relativedelta import relativedelta
 
 # Create your models here.
 
@@ -30,6 +33,10 @@ class BaseFieldModel(models.Model):
 class BaseEntryModel(BaseFieldModel):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    created_by = models.ForeignKey('Worker', related_name="%(app_label)s_%(class)s_createdby",
+                                   null=True, on_delete=models.SET_NULL, blank=True)
+    updated_by = models.ForeignKey('Worker', related_name="%(app_label)s_%(class)s_updatedby",
+                                   null=True, on_delete=models.SET_NULL, blank=True)
 
     class Meta:
         abstract = True
@@ -41,6 +48,7 @@ class User(BaseEntryModel):
     phone = models.CharField(max_length=15, null=True, default=None, blank=True)
     email = models.EmailField(unique=True, validators=[validate_email])
     is_active = models.BooleanField(default=True)
+    institution = models.ForeignKey(to='Institution', on_delete=models.RESTRICT, null=True)
     created_by = models.ForeignKey(
         'Worker', related_name='user_createdby', null=True, on_delete=models.SET_NULL)
     updated_by = models.ForeignKey(
@@ -56,10 +64,6 @@ class Role(BaseFieldModel):
 class WorkerRole(BaseEntryModel):
     worker = models.ForeignKey(to='Worker', on_delete=models.CASCADE)
     role = models.ForeignKey(to=Role, on_delete=models.RESTRICT)
-    created_by = models.ForeignKey('Worker', related_name="%(app_label)s_%(class)s_createdby",
-                                   null=True, on_delete=models.SET_NULL, blank=True)
-    updated_by = models.ForeignKey('Worker', related_name="%(app_label)s_%(class)s_updatedby",
-                                   null=True, on_delete=models.SET_NULL, blank=True)
 
     class Meta:
         constraints = [models.UniqueConstraint(fields=['worker', 'role'], name='unique_worker_role')]
@@ -99,7 +103,7 @@ class CooperationDucument(BaseEntryModel):
         (5, 'Disetujui Oleh Universitas'),
         
     )
-    number = models.CharField(max_length=20)
+    number = models.IntegerField()
     name = models.CharField(max_length=125)
     type = models.IntegerField(choices=TYPE_CHOICE)
     period = models.IntegerField(choices=PERIOD_CHOICE)
@@ -111,10 +115,28 @@ class CooperationDucument(BaseEntryModel):
     responsible_approval_name = models.CharField(max_length=125)
     responsible_approval_position = models.CharField(max_length=255)
     responsible_email = models.EmailField()
-    status = models.IntegerField()
+    status = models.IntegerField(choices=STATUS_CHOICE)
     expied_date = models.DateTimeField()
+
     choices_set = models.ManyToManyField(to=CooperationChoice, through='CooperationDocumentChoice', through_fields=('document', 'choice'), related_name='cooperationdocument_set' )
 
+    user = models.ForeignKey(to=User, on_delete=models.RESTRICT)
+    def save(self, *args, **kwargs):
+        # This means that the model isn't saved to the database yet
+        if self._state.adding:
+            # Get the maximum display_id value from the database
+            last_id = CooperationDucument.objects.all().aggregate(largest=models.Max('number'))['largest']
+
+            # aggregate can return None! Check it first.
+            # If it isn't none, just use the last ID specified (which should be the greatest) and add one to it
+            if last_id is not None:
+                self.number = last_id + 1
+            else:
+                self.number = 1
+                
+            self.expied_date = datetime.now () + relativedelta(months=+6)
+
+        super(CooperationDucument, self).save(*args, **kwargs)
 class CooperationFile(BaseEntryModel):
     document = models.ForeignKey(to=CooperationDucument, on_delete=models.RESTRICT)
     photo = models.FileField(upload_to=path_and_rename, max_length=255)
