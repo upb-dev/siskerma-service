@@ -10,8 +10,8 @@ class BaseModelViewSet(viewsets.ModelViewSet):
     serializer_class = None
     filter_backends = [filters.SearchFilter, DjangoFilterBackend, filters.OrderingFilter]
     filterset_fields = '__all__'
-    
-    permission_classes  = [IsAuthenticated]
+
+    permission_classes = [IsAuthenticated]
 
     def paginate_queryset(self, queryset):
         if 'no_page' in self.request.query_params:
@@ -27,5 +27,7 @@ class BaseModelViewSet(viewsets.ModelViewSet):
     @atomic
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
-        self.perform_destroy(instance)
+        instance.is_active = False
+
+        instance.save()
         return Response()

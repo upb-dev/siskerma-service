@@ -1,5 +1,6 @@
-from siskerma.app.models import Role, Worker
+from siskerma.app.models import Prodi, Role, Worker
 from rest_framework import serializers
+from siskerma.app.serializers.prodi_serializers import ProdiSerializer
 
 from siskerma.app.serializers.role_serializer import RoleSerializer
 
@@ -9,6 +10,9 @@ class WorkerSerializer(serializers.ModelSerializer):
     ), many=True, write_only=True, source='roles', required=False)
     roles = RoleSerializer(many=True, read_only=True)
     password = serializers.CharField(write_only=True, required=False)
+    prodi_id = serializers.PrimaryKeyRelatedField(
+        queryset=Prodi.objects.all(), write_only=True, source='prodi', required=False)
+    prodi = ProdiSerializer(read_only=True)
 
     class Meta:
         model = Worker

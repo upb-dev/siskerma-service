@@ -10,8 +10,9 @@ from dateutil.relativedelta import relativedelta
 
 # Create your models here.
 
+
 def path_and_rename(instance, filename):
-   
+
     upload_to = 'siskerma/file'
     ext = filename.split('.')[-1]
     # get filename
@@ -22,6 +23,7 @@ def path_and_rename(instance, filename):
         filename = f'{uuid.uuid4().hex}.{ext}'
     # return the whole path to the file
     return os.path.join(upload_to, filename)
+
 
 class BaseFieldModel(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=True)
@@ -41,19 +43,20 @@ class BaseEntryModel(BaseFieldModel):
     class Meta:
         abstract = True
 
+
 class User(BaseEntryModel):
     name = models.CharField(max_length=100)
     country = models.CharField(max_length=50)
     address = models.CharField(max_length=255, null=True)
     phone = models.CharField(max_length=15, null=True, default=None, blank=True)
-    email = models.EmailField(unique=True, validators=[validate_email])
+    email = models.EmailField(unique=False, validators=[validate_email])
     is_active = models.BooleanField(default=True)
     institution = models.ForeignKey(to='Institution', on_delete=models.RESTRICT, null=True)
+    cooperation_document = models.ForeignKey(to='CooperationDucument', on_delete=models.CASCADE, null=True)
     created_by = models.ForeignKey(
         'Worker', related_name='user_createdby', null=True, on_delete=models.SET_NULL)
     updated_by = models.ForeignKey(
         'Worker', related_name='user_updatedby', null=True, on_delete=models.SET_NULL)
-
 
 
 class Role(BaseFieldModel):
@@ -78,10 +81,10 @@ class Worker(AbstractUser):
     prodi = models.ForeignKey(to='Prodi', on_delete=models.RESTRICT, null=True)
 
 
-
 class CooperationChoice(BaseEntryModel):
     name = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
+
 
 class CooperationDucument(BaseEntryModel):
     TYPE_CHOICE = (
@@ -90,26 +93,26 @@ class CooperationDucument(BaseEntryModel):
         (3, 'MOU')
     )
 
-    PERIOD_CHOICE =(
+    PERIOD_CHOICE = (
         (1, 'Berdasar Tanggal'),
         (2, 'Tidak Dibatasi')
     )
 
     STATUS_CHOICE = (
-        (1,'Draft Pengajuan'),
+        (1, 'Draft Pengajuan'),
         (2, 'Belum Divalidasi'),
         (3, 'Sudah Divalidasi'),
-        (4,'Draft Kadaluarsa'),
+        (4, 'Draft Kadaluarsa'),
         (5, 'Disetujui Oleh Universitas'),
-        
+
     )
     number = models.IntegerField()
     name = models.CharField(max_length=125)
     type = models.IntegerField(choices=TYPE_CHOICE)
     period = models.IntegerField(choices=PERIOD_CHOICE)
     start_date = models.DateTimeField(null=True, blank=True)
-    end_date= models.DateTimeField(null=True, blank=True)
-    date_end = models.DateField(null=True, blank=True) 
+    end_date = models.DateTimeField(null=True, blank=True)
+    date_end = models.DateField(null=True, blank=True)
     responsible_name = models.CharField(max_length=125)
     responsible_position = models.CharField(max_length=255)
     responsible_approval_name = models.CharField(max_length=125)
@@ -117,10 +120,11 @@ class CooperationDucument(BaseEntryModel):
     responsible_email = models.EmailField()
     status = models.IntegerField(choices=STATUS_CHOICE)
     expied_date = models.DateTimeField()
+    choices_set = models.ManyToManyField(to=CooperationChoice, through='CooperationDocumentChoice', through_fields=(
+        'document', 'choice'), related_name='cooperationdocument_set')
+    # user = models.ForeignKey(to=User, on_delete=models.RESTRICT)
+    files = models.ForeignKey(to='CooperationFile', on_delete=models.CASCADE, null=True)
 
-    choices_set = models.ManyToManyField(to=CooperationChoice, through='CooperationDocumentChoice', through_fields=('document', 'choice'), related_name='cooperationdocument_set' )
-
-    user = models.ForeignKey(to=User, on_delete=models.RESTRICT)
     def save(self, *args, **kwargs):
         # This means that the model isn't saved to the database yet
         if self._state.adding:
@@ -133,10 +137,12 @@ class CooperationDucument(BaseEntryModel):
                 self.number = last_id + 1
             else:
                 self.number = 1
-                
-            self.expied_date = datetime.now () + relativedelta(months=+6)
+
+            self.expied_date = datetime.now() + relativedelta(months=+6)
 
         super(CooperationDucument, self).save(*args, **kwargs)
+
+
 class CooperationFile(BaseEntryModel):
     document = models.ForeignKey(to=CooperationDucument, on_delete=models.RESTRICT)
     photo = models.FileField(upload_to=path_and_rename, max_length=255)
@@ -153,12 +159,13 @@ class Institution(BaseEntryModel):
     name = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
 
+
 class Fakultas(BaseEntryModel):
     name = models.CharField(max_length=125)
-    is_active=models.BooleanField(default=True)
+    is_active = models.BooleanField(default=True)
+
 
 class Prodi(BaseEntryModel):
     name = models.CharField(max_length=255)
-    is_active= models.BooleanField(default=True)
+    is_active = models.BooleanField(default=True)
     fakultas = models.ForeignKey(to=Fakultas, on_delete=models.RESTRICT)
-
