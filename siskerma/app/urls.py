@@ -7,7 +7,7 @@ from siskerma.app.views.worker_views import WorkerViewSet
 from siskerma.app.views.cooperation_document_views import CooperationDocumentViewSet
 from siskerma.app.views.cooperation_choice_views import CooperationChoiceViewSet
 from siskerma.app.views.fakultas_views import FakultasViewSet
-from siskerma.app.views.institution_serializer import InstitutionViewSet
+from siskerma.app.views.institution_views import InstitutionViewSet
 from siskerma.app.views.prodi_views import ProdiViewSet
 from siskerma.app.views.user_views import UserViewSet
 
