@@ -80,6 +80,10 @@ class Worker(AbstractUser):
                                    through_fields=('worker', 'role'), related_name='workers')
     prodi = models.ForeignKey(to='Prodi', on_delete=models.RESTRICT, null=True)
 
+    @property
+    def get_role_name(self):
+        return list(self.roles.all().values_list('name', flat=True))
+
 
 class CooperationChoice(BaseEntryModel):
     name = models.CharField(max_length=255)
