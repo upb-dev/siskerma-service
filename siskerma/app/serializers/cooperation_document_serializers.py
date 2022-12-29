@@ -108,3 +108,17 @@ class CooperationDocumentSerializer(BaseModelSerializer):
     class Meta:
         model = CooperationDucument
         exclude = ['number', 'choices_set',]
+
+
+class ListCooperationDocumentSerializer(BaseModelSerializer):
+    document_number = serializers.SerializerMethodField()
+    type_document = serializers.ReadOnlyField(read_only=True, source='get_type_display')
+    status_document = serializers.ReadOnlyField(read_only=True, source='get_status_display')
+
+    def get_document_number(self, obj):
+
+        return f'041033/{obj.get_type_display()}/{obj.created_at.year}/{obj.number}'
+
+    class Meta:
+        model = CooperationDucument
+        fields = ['id', 'document_number', 'name', 'type_document', 'status_document']
