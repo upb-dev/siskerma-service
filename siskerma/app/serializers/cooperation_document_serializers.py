@@ -71,10 +71,14 @@ class CooperationDocumentSerializer(BaseModelSerializer):
                     user.name = i.get('name', user.name)
                     user.address = i.get('address', user.address)
                     user.country = i.get('country', user.country)
-                    user.phone = i.get('phone', user.phone)
                     user.email = i.get('email', user.email)
                     user.is_active = i.get('is_active', user.is_active)
                     user.institution = i.get('institution', user.institution)
+                    user.responsible_name = i.get('responsible_name', user.responsible_name)
+                    user.responsible_position = i.get('responsible_position', user.responsible_position)
+                    user.responsible_approval_name = i.get('responsible_approval_name', user.responsible_approval_name)
+                    user.responsible_approval_position = i.get(
+                        'responsible_approval_position', user.responsible_approval_position)
                     user.updated_by = request.user
                     try:
                         user.save()
