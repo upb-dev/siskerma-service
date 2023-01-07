@@ -1,6 +1,7 @@
 from siskerma.app.serializers.base_models_serializer import BaseModelSerializer
 from siskerma.app.models import CooperationDucument, CooperationChoice, Institution, User
 from rest_framework import serializers
+from siskerma.app.serializers.cooperation_file_serializer import CooperationFileSerializer
 
 from siskerma.app.serializers.institution_serializer import InstitutionSerializer
 
@@ -29,9 +30,9 @@ class UserSerializers(BaseModelSerializer):
 
 class CooperationDocumentSerializer(BaseModelSerializer):
 
-    status = serializers.IntegerField(write_only=True)
-    period = serializers.IntegerField(write_only=True)
-    type = serializers.IntegerField(write_only=True)
+    # status = serializers.IntegerField(write_only=True)
+    # period = serializers.IntegerField(write_only=True)
+    # type = serializers.IntegerField(write_only=True)
 
     document_number = serializers.SerializerMethodField()
     type_document = serializers.ReadOnlyField(read_only=True, source='get_type_display')
@@ -43,6 +44,7 @@ class CooperationDocumentSerializer(BaseModelSerializer):
     ), write_only=True, allow_empty=True, many=True, source='choices_set')
     bentuk_kerjasama = CooperationChoiceSerializers(many=True, read_only=True, source='choices_set')
     partner = UserSerializers(source='user_set', many=True)
+    files = CooperationFileSerializer(read_only=True)
     # partner_data = UserSerializers(write_only=True, many=True)
 
     def get_document_number(self, obj):

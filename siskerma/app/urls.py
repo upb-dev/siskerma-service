@@ -1,5 +1,6 @@
 from django.urls import re_path, include
 from rest_framework import routers
+from siskerma.app.views.cooperation_file_views import CooperationFileVIewSet
 
 from siskerma.app.views.fakultas_views import FakultasViewSet
 from siskerma.app.views.role_views import RoleViewSet
@@ -10,6 +11,7 @@ from siskerma.app.views.fakultas_views import FakultasViewSet
 from siskerma.app.views.institution_views import InstitutionViewSet
 from siskerma.app.views.prodi_views import ProdiViewSet
 from siskerma.app.views.user_views import UserViewSet
+
 
 router = routers.DefaultRouter()
 
@@ -22,9 +24,10 @@ router.register('institution', InstitutionViewSet)
 router.register('prodi', ProdiViewSet)
 router.register('fakultas', FakultasViewSet)
 router.register('user', UserViewSet)
+router.register('file', CooperationFileVIewSet)
 
 
 urlpatterns = [
     re_path('', include('siskerma.app.views.auth.urls')),
     re_path('', include(router.urls)),
-]
+] 

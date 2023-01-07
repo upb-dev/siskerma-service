@@ -1,11 +1,17 @@
+from siskerma.app.filters.document_filter import DocumentFilter
 from siskerma.app.views.base_model_viewset import BaseModelViewSet
 from siskerma.app.serializers.cooperation_document_serializers import CooperationDocumentSerializer, ListCooperationDocumentSerializer
 from siskerma.app.models import CooperationDucument
+from django.db.transaction import atomic
+from rest_framework.decorators import action
+from rest_framework.response import Response
 
 
 class CooperationDocumentViewSet(BaseModelViewSet):
     queryset = CooperationDucument.objects.all().order_by('created_at')
     serializer_class = CooperationDocumentSerializer
+    filterset_class = DocumentFilter
+    search_fields = ['name', 'number',]
 
     def get_queryset(self):
         if self.request.user and ('Admin' not in self.request.user.get_role_name):
@@ -19,3 +25,11 @@ class CooperationDocumentViewSet(BaseModelViewSet):
         if self.action.lower() == 'list':
             self.serializer_class = ListCooperationDocumentSerializer
         return super().get_serializer_class()
+
+    @action(detail=False, methods=['GET'], url_path='ajuan_kerjasama_pribadi')
+    def get_document(self, request, *args, **kwargs):
+        queryset = self.queryset.filter(created_by=request.user)
+
+        serializer = ListCooperationDocumentSerializer(queryset, many=True)
+
+        return Response(serializer.data)

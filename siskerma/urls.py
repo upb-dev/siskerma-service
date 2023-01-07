@@ -18,7 +18,8 @@ from django.urls import re_path, path, include
 from django.views.static import serve
 from django.conf import settings
 from siskerma.app.views.index_views import index
-
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
@@ -31,4 +32,4 @@ urlpatterns = [
 urlpatterns = [
     path('', index, name="index"),
     path('v1/', include(urlpatterns))
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

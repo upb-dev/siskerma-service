@@ -146,7 +146,7 @@ class CooperationDucument(BaseEntryModel):
 
 
 class CooperationFile(BaseEntryModel):
-    document = models.ForeignKey(to=CooperationDucument, on_delete=models.RESTRICT)
+    # coopration_document = models.ForeignKey(to=CooperationDucument, on_delete=models.RESTRICT)
     photo = models.FileField(upload_to=path_and_rename, max_length=255)
     document = models.FileField(upload_to=path_and_rename, max_length=255)
     url = models.URLField()
