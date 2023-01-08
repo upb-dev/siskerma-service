@@ -16,6 +16,8 @@ class CooperationDocumentViewSet(BaseModelViewSet):
     def get_queryset(self):
         if self.request.user and ('Admin' not in self.request.user.get_role_name):
             self.queryset = self.queryset.filter(created_by=self.request.user)
+        if 'is_pribadi' in self.request.query_params:
+            self.queryset = self.queryset.filter(created_by=self.request.user).exclude(status=1)
         return super().get_queryset()
 
     def list(self, request, *args, **kwargs):
@@ -26,10 +28,11 @@ class CooperationDocumentViewSet(BaseModelViewSet):
             self.serializer_class = ListCooperationDocumentSerializer
         return super().get_serializer_class()
 
-    @action(detail=False, methods=['GET'], url_path='ajuan_kerjasama_pribadi')
-    def get_document(self, request, *args, **kwargs):
-        queryset = self.queryset.filter(created_by=request.user)
+    @atomic
+    @action(detail=True, methods=['GET'], url_path='validasi')
+    def validasi(self, request, *args, **kwargs):
+        data = self.get_object()
+        serializer = self.get_serializer()
+        serializer = serializer.validasi_ajuan(data)
 
-        serializer = ListCooperationDocumentSerializer(queryset, many=True)
-
-        return Response(serializer.data)
+        return Response()

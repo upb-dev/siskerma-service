@@ -111,6 +111,12 @@ class CooperationDocumentSerializer(BaseModelSerializer):
 
         return instance
 
+    def validasi_ajuan(self, obj):
+        obj.status = 3
+        obj.save()
+        self.instance = obj
+        return self.instance
+
     class Meta:
         model = CooperationDucument
         exclude = ['number', 'choices_set',]
