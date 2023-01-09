@@ -1,6 +1,6 @@
 from siskerma.app.filters.document_filter import DocumentFilter
 from siskerma.app.views.base_model_viewset import BaseModelViewSet
-from siskerma.app.serializers.cooperation_document_serializers import CooperationDocumentSerializer, ListCooperationDocumentSerializer
+from siskerma.app.serializers.cooperation_document_serializers import CooperationDocumentSerializer, ListCooperationDocumentSerializer, ValidasiDocument
 from siskerma.app.models import CooperationDucument
 from django.db.transaction import atomic
 from rest_framework.decorators import action
@@ -29,10 +29,11 @@ class CooperationDocumentViewSet(BaseModelViewSet):
         return super().get_serializer_class()
 
     @atomic
-    @action(detail=True, methods=['GET'], url_path='validasi')
+    @action(detail=True, methods=['POST'], url_path='validasi')
     def validasi(self, request, *args, **kwargs):
         data = self.get_object()
-        serializer = self.get_serializer()
-        serializer = serializer.validasi_ajuan(data)
+        serializer = ValidasiDocument(data=self.request.data, context=self.get_serializer_context())
+        serializer.is_valid(raise_exception=True)
+        serializer.validasi_ajuan(obj=data, validated_data=serializer.validated_data)
 
         return Response()

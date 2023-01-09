@@ -111,6 +111,7 @@ class CooperationDucument(BaseEntryModel):
         (3, 'Sudah Divalidasi'),
         (4, 'Draft Kadaluarsa'),
         (5, 'Disetujui Oleh Universitas'),
+        (6, 'Ditolak'),
 
     )
     number = models.IntegerField()

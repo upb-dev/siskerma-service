@@ -111,12 +111,6 @@ class CooperationDocumentSerializer(BaseModelSerializer):
 
         return instance
 
-    def validasi_ajuan(self, obj):
-        obj.status = 3
-        obj.save()
-        self.instance = obj
-        return self.instance
-
     class Meta:
         model = CooperationDucument
         exclude = ['number', 'choices_set',]
@@ -134,3 +128,13 @@ class ListCooperationDocumentSerializer(BaseModelSerializer):
     class Meta:
         model = CooperationDucument
         fields = ['id', 'document_number', 'name', 'type_document', 'status_document']
+
+
+class ValidasiDocument(serializers.Serializer):
+    status = serializers.IntegerField(write_only=True)
+
+    def validasi_ajuan(self, obj, validated_data):
+        obj.status = validated_data['status']
+        obj.save()
+        self.instance = obj
+        return self.instance
