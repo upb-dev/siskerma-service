@@ -1,9 +1,11 @@
 from siskerma.app.serializers.base_models_serializer import BaseModelSerializer
-from siskerma.app.models import CooperationDucument, CooperationChoice, Institution, User
+from siskerma.app.models import CooperationDucument, CooperationChoice, History, Institution, User
 from rest_framework import serializers
 from siskerma.app.serializers.cooperation_file_serializer import CooperationFileSerializer
+from siskerma.app.serializers.history_serializers import HistorySerializer
 
 from siskerma.app.serializers.institution_serializer import InstitutionSerializer
+from django.db.transaction import atomic
 
 from rest_framework.exceptions import ValidationError
 
@@ -29,11 +31,6 @@ class UserSerializers(BaseModelSerializer):
 
 
 class CooperationDocumentSerializer(BaseModelSerializer):
-
-    # status = serializers.IntegerField(write_only=True)
-    # period = serializers.IntegerField(write_only=True)
-    # type = serializers.IntegerField(write_only=True)
-
     document_number = serializers.SerializerMethodField()
     type_document = serializers.ReadOnlyField(read_only=True, source='get_type_display')
     period_document = serializers.ReadOnlyField(read_only=True, source='get_period_display')
@@ -45,20 +42,26 @@ class CooperationDocumentSerializer(BaseModelSerializer):
     bentuk_kerjasama = CooperationChoiceSerializers(many=True, read_only=True, source='choices_set')
     partner = UserSerializers(source='user_set', many=True)
     files = CooperationFileSerializer(read_only=True)
+    history = HistorySerializer(many=True, read_only=True, source='history_set')
     # partner_data = UserSerializers(write_only=True, many=True)
 
     def get_document_number(self, obj):
 
         return f'041033/{obj.get_type_display()}/{obj.created_at.year}/{obj.number}'
 
+    @atomic
     def create(self, validated_data):
         partner = validated_data.pop('user_set')
+        validated_data['fakultas'] = self.context['worker'].prodi.fakultas
         document = super().create(validated_data)
         for i in partner:
             User.objects.create(**i, cooperation_document=document)
 
+        History.objects.create(document=document)
+
         return document
 
+    @atomic
     def update(self, instance, validated_data):
         request = self.context.get('request', None)
         partners = validated_data.pop('user_set')
@@ -130,11 +133,13 @@ class ListCooperationDocumentSerializer(BaseModelSerializer):
         fields = ['id', 'document_number', 'name', 'type_document', 'status_document']
 
 
-class ValidasiDocument(serializers.Serializer):
-    status = serializers.IntegerField(write_only=True)
+class AjukanUlangSerializer(serializers.Serializer):
 
-    def validasi_ajuan(self, obj, validated_data):
-        obj.status = validated_data['status']
+    def ajukan_ulang(self, obj: CooperationDucument):
+        obj.status = 1
+        obj.step = 1
         obj.save()
+        History.objects.create(document=obj)
+
         self.instance = obj
         return self.instance

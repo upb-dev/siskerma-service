@@ -1,6 +1,7 @@
 from siskerma.app.filters.document_filter import DocumentFilter
+from siskerma.app.serializers.history_serializers import HistoryDetailSerializer
 from siskerma.app.views.base_model_viewset import BaseModelViewSet
-from siskerma.app.serializers.cooperation_document_serializers import CooperationDocumentSerializer, ListCooperationDocumentSerializer, ValidasiDocument
+from siskerma.app.serializers.cooperation_document_serializers import AjukanUlangSerializer, CooperationDocumentSerializer, ListCooperationDocumentSerializer
 from siskerma.app.models import CooperationDucument
 from django.db.transaction import atomic
 from rest_framework.decorators import action
@@ -32,8 +33,18 @@ class CooperationDocumentViewSet(BaseModelViewSet):
     @action(detail=True, methods=['POST'], url_path='validasi')
     def validasi(self, request, *args, **kwargs):
         data = self.get_object()
-        serializer = ValidasiDocument(data=self.request.data, context=self.get_serializer_context())
+        serializer = HistoryDetailSerializer(data=self.request.data, context=self.get_serializer_context())
         serializer.is_valid(raise_exception=True)
         serializer.validasi_ajuan(obj=data, validated_data=serializer.validated_data)
+
+        return Response()
+
+    @atomic
+    @action(detail=True, methods=['POST'], url_path='ajukan-ulang')
+    def ajukan_ulang(self, *args, **kwargs):
+        data = self.get_object()
+
+        serializer = AjukanUlangSerializer(context=self.get_serializer_context())
+        serializer.ajukan_ulang(obj=data)
 
         return Response()

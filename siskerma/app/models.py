@@ -107,14 +107,14 @@ class CooperationDucument(BaseEntryModel):
 
     STATUS_CHOICE = (
         (1, 'Draft Pengajuan'),
-        (2, 'Belum Divalidasi'),
-        (3, 'Sudah Divalidasi'),
-        (4, 'Draft Kadaluarsa'),
-        (5, 'Disetujui Oleh Universitas'),
+        (2, 'Disetujui Oleh Kaprodi'),
+        (3, 'Disetujui OLeh Dekan'),
+        (4, 'Disetujui Oleh Rektor'),
+        (5, 'Draft Kadaluarsa'),
         (6, 'Ditolak'),
 
     )
-    number = models.IntegerField()
+    number = models.CharField(max_length=125)
     name = models.CharField(max_length=125)
     type = models.IntegerField(choices=TYPE_CHOICE)
     period = models.IntegerField(choices=PERIOD_CHOICE)
@@ -123,24 +123,44 @@ class CooperationDucument(BaseEntryModel):
     date_end = models.DateField(null=True, blank=True)
     status = models.IntegerField(choices=STATUS_CHOICE)
     expied_date = models.DateTimeField()
+    step = models.IntegerField(default=1)
     choices_set = models.ManyToManyField(to=CooperationChoice, through='CooperationDocumentChoice', through_fields=(
         'document', 'choice'), related_name='cooperationdocument_set')
     # user = models.ForeignKey(to=User, on_delete=models.RESTRICT)
     files = models.ForeignKey(to='CooperationFile', on_delete=models.CASCADE, null=True)
+    fakultas = models.ForeignKey(to='Fakultas', on_delete=models.CASCADE, null=True)
 
     def save(self, *args, **kwargs):
         # This means that the model isn't saved to the database yet
+        last_id = None
+        number = None
         if self._state.adding:
-            # Get the maximum display_id value from the database
-            last_id = CooperationDucument.objects.all().aggregate(largest=models.Max('number'))['largest']
+            if self.type == 1:  # type IA
+                # Get the maximum display_id value from the database
+                last_id = self.fakultas.last_ai_number
+                if last_id is not None:
+                    self.fakultas.last_ai_number = last_id + 1
+                    self.fakultas.save()
+                    number = last_id + 1
+            if self.type == 2:  # type MOA
+                # Get the maximum display_id value from the database
+                last_id = self.fakultas.last_moa_number
+                if last_id is not None:
+                    self.fakultas.last_moa_number = last_id + 1
+                    self.fakultas.save()
+                    number = last_id + 1
 
+            if self.type == 3:  # type MOU
+                # Get the maximum display_id value from the database
+                last_id = self.fakultas.last_mou_number
+                if last_id is not None:
+                    self.fakultas.last_mou_number = last_id + 1
+                    self.fakultas.save()
+                    number = last_id + 1
             # aggregate can return None! Check it first.
             # If it isn't none, just use the last ID specified (which should be the greatest) and add one to it
-            if last_id is not None:
-                self.number = last_id + 1
-            else:
-                self.number = 1
 
+            self.number = f"{number:05d}"
             self.expied_date = datetime.now() + relativedelta(months=+6)
 
         super(CooperationDucument, self).save(*args, **kwargs)
@@ -166,6 +186,45 @@ class Institution(BaseEntryModel):
 class Fakultas(BaseEntryModel):
     name = models.CharField(max_length=125)
     is_active = models.BooleanField(default=True)
+    last_ai_number = models.IntegerField()
+    last_moa_number = models.IntegerField()
+    last_mou_number = models.IntegerField()
+
+
+class History(BaseEntryModel):
+    document = models.ForeignKey(to=CooperationDucument, on_delete=models.CASCADE)
+    label = models.CharField(max_length=125, default='Pengajuan')
+    number = models.IntegerField(default=1)
+
+    def save(self, *args, **kwargs):
+        if self._state.adding:
+            last_number = History.objects.all().aggregate(largest=models.Max('number'))['largest']
+
+            if last_number is not None:
+                self.number = last_number + 1
+            else:
+                self.number = 1
+
+        super(History, self).save(*args, **kwargs)
+
+    class Meta:
+        ordering = ['number']
+
+
+class HistoryDetail(BaseEntryModel):
+    STATUS_CHOICE = (
+        (1, 'Disetujui'),
+        (2, 'Ditolak'),
+
+    )
+    history = models.ForeignKey(to=History, on_delete=models.CASCADE)
+    key = models.CharField(max_length=125)
+    date = models.DateTimeField(auto_now_add=True)
+    notes = models.CharField(max_length=125, null=True)
+    status = models.IntegerField(choices=STATUS_CHOICE)
+
+    class Meta:
+        ordering = ['created_at']
 
 
 class Prodi(BaseEntryModel):

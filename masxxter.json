@@ -1,0 +1,2062 @@
+[
+    {
+        "model": "auth.permission",
+        "pk": 1,
+        "fields": {
+            "name": "Can add log entry",
+            "content_type": 1,
+            "codename": "add_logentry"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 2,
+        "fields": {
+            "name": "Can change log entry",
+            "content_type": 1,
+            "codename": "change_logentry"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 3,
+        "fields": {
+            "name": "Can delete log entry",
+            "content_type": 1,
+            "codename": "delete_logentry"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 4,
+        "fields": {
+            "name": "Can view log entry",
+            "content_type": 1,
+            "codename": "view_logentry"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 5,
+        "fields": {
+            "name": "Can add permission",
+            "content_type": 2,
+            "codename": "add_permission"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 6,
+        "fields": {
+            "name": "Can change permission",
+            "content_type": 2,
+            "codename": "change_permission"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 7,
+        "fields": {
+            "name": "Can delete permission",
+            "content_type": 2,
+            "codename": "delete_permission"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 8,
+        "fields": {
+            "name": "Can view permission",
+            "content_type": 2,
+            "codename": "view_permission"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 9,
+        "fields": {
+            "name": "Can add group",
+            "content_type": 3,
+            "codename": "add_group"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 10,
+        "fields": {
+            "name": "Can change group",
+            "content_type": 3,
+            "codename": "change_group"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 11,
+        "fields": {
+            "name": "Can delete group",
+            "content_type": 3,
+            "codename": "delete_group"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 12,
+        "fields": {
+            "name": "Can view group",
+            "content_type": 3,
+            "codename": "view_group"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 13,
+        "fields": {
+            "name": "Can add content type",
+            "content_type": 4,
+            "codename": "add_contenttype"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 14,
+        "fields": {
+            "name": "Can change content type",
+            "content_type": 4,
+            "codename": "change_contenttype"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 15,
+        "fields": {
+            "name": "Can delete content type",
+            "content_type": 4,
+            "codename": "delete_contenttype"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 16,
+        "fields": {
+            "name": "Can view content type",
+            "content_type": 4,
+            "codename": "view_contenttype"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 17,
+        "fields": {
+            "name": "Can add session",
+            "content_type": 5,
+            "codename": "add_session"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 18,
+        "fields": {
+            "name": "Can change session",
+            "content_type": 5,
+            "codename": "change_session"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 19,
+        "fields": {
+            "name": "Can delete session",
+            "content_type": 5,
+            "codename": "delete_session"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 20,
+        "fields": {
+            "name": "Can view session",
+            "content_type": 5,
+            "codename": "view_session"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 21,
+        "fields": {
+            "name": "Can add user",
+            "content_type": 6,
+            "codename": "add_worker"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 22,
+        "fields": {
+            "name": "Can change user",
+            "content_type": 6,
+            "codename": "change_worker"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 23,
+        "fields": {
+            "name": "Can delete user",
+            "content_type": 6,
+            "codename": "delete_worker"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 24,
+        "fields": {
+            "name": "Can view user",
+            "content_type": 6,
+            "codename": "view_worker"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 25,
+        "fields": {
+            "name": "Can add cooperation choice",
+            "content_type": 7,
+            "codename": "add_cooperationchoice"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 26,
+        "fields": {
+            "name": "Can change cooperation choice",
+            "content_type": 7,
+            "codename": "change_cooperationchoice"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 27,
+        "fields": {
+            "name": "Can delete cooperation choice",
+            "content_type": 7,
+            "codename": "delete_cooperationchoice"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 28,
+        "fields": {
+            "name": "Can view cooperation choice",
+            "content_type": 7,
+            "codename": "view_cooperationchoice"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 29,
+        "fields": {
+            "name": "Can add cooperation document choice",
+            "content_type": 8,
+            "codename": "add_cooperationdocumentchoice"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 30,
+        "fields": {
+            "name": "Can change cooperation document choice",
+            "content_type": 8,
+            "codename": "change_cooperationdocumentchoice"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 31,
+        "fields": {
+            "name": "Can delete cooperation document choice",
+            "content_type": 8,
+            "codename": "delete_cooperationdocumentchoice"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 32,
+        "fields": {
+            "name": "Can view cooperation document choice",
+            "content_type": 8,
+            "codename": "view_cooperationdocumentchoice"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 33,
+        "fields": {
+            "name": "Can add fakultas",
+            "content_type": 9,
+            "codename": "add_fakultas"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 34,
+        "fields": {
+            "name": "Can change fakultas",
+            "content_type": 9,
+            "codename": "change_fakultas"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 35,
+        "fields": {
+            "name": "Can delete fakultas",
+            "content_type": 9,
+            "codename": "delete_fakultas"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 36,
+        "fields": {
+            "name": "Can view fakultas",
+            "content_type": 9,
+            "codename": "view_fakultas"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 37,
+        "fields": {
+            "name": "Can add role",
+            "content_type": 10,
+            "codename": "add_role"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 38,
+        "fields": {
+            "name": "Can change role",
+            "content_type": 10,
+            "codename": "change_role"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 39,
+        "fields": {
+            "name": "Can delete role",
+            "content_type": 10,
+            "codename": "delete_role"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 40,
+        "fields": {
+            "name": "Can view role",
+            "content_type": 10,
+            "codename": "view_role"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 41,
+        "fields": {
+            "name": "Can add worker role",
+            "content_type": 11,
+            "codename": "add_workerrole"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 42,
+        "fields": {
+            "name": "Can change worker role",
+            "content_type": 11,
+            "codename": "change_workerrole"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 43,
+        "fields": {
+            "name": "Can delete worker role",
+            "content_type": 11,
+            "codename": "delete_workerrole"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 44,
+        "fields": {
+            "name": "Can view worker role",
+            "content_type": 11,
+            "codename": "view_workerrole"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 45,
+        "fields": {
+            "name": "Can add user",
+            "content_type": 12,
+            "codename": "add_user"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 46,
+        "fields": {
+            "name": "Can change user",
+            "content_type": 12,
+            "codename": "change_user"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 47,
+        "fields": {
+            "name": "Can delete user",
+            "content_type": 12,
+            "codename": "delete_user"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 48,
+        "fields": {
+            "name": "Can view user",
+            "content_type": 12,
+            "codename": "view_user"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 49,
+        "fields": {
+            "name": "Can add prodi",
+            "content_type": 13,
+            "codename": "add_prodi"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 50,
+        "fields": {
+            "name": "Can change prodi",
+            "content_type": 13,
+            "codename": "change_prodi"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 51,
+        "fields": {
+            "name": "Can delete prodi",
+            "content_type": 13,
+            "codename": "delete_prodi"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 52,
+        "fields": {
+            "name": "Can view prodi",
+            "content_type": 13,
+            "codename": "view_prodi"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 53,
+        "fields": {
+            "name": "Can add institution",
+            "content_type": 14,
+            "codename": "add_institution"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 54,
+        "fields": {
+            "name": "Can change institution",
+            "content_type": 14,
+            "codename": "change_institution"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 55,
+        "fields": {
+            "name": "Can delete institution",
+            "content_type": 14,
+            "codename": "delete_institution"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 56,
+        "fields": {
+            "name": "Can view institution",
+            "content_type": 14,
+            "codename": "view_institution"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 57,
+        "fields": {
+            "name": "Can add cooperation file",
+            "content_type": 15,
+            "codename": "add_cooperationfile"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 58,
+        "fields": {
+            "name": "Can change cooperation file",
+            "content_type": 15,
+            "codename": "change_cooperationfile"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 59,
+        "fields": {
+            "name": "Can delete cooperation file",
+            "content_type": 15,
+            "codename": "delete_cooperationfile"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 60,
+        "fields": {
+            "name": "Can view cooperation file",
+            "content_type": 15,
+            "codename": "view_cooperationfile"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 61,
+        "fields": {
+            "name": "Can add cooperation ducument",
+            "content_type": 16,
+            "codename": "add_cooperationducument"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 62,
+        "fields": {
+            "name": "Can change cooperation ducument",
+            "content_type": 16,
+            "codename": "change_cooperationducument"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 63,
+        "fields": {
+            "name": "Can delete cooperation ducument",
+            "content_type": 16,
+            "codename": "delete_cooperationducument"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 64,
+        "fields": {
+            "name": "Can view cooperation ducument",
+            "content_type": 16,
+            "codename": "view_cooperationducument"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 1,
+        "fields": {
+            "app_label": "admin",
+            "model": "logentry"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 2,
+        "fields": {
+            "app_label": "auth",
+            "model": "permission"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 3,
+        "fields": {
+            "app_label": "auth",
+            "model": "group"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 4,
+        "fields": {
+            "app_label": "contenttypes",
+            "model": "contenttype"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 5,
+        "fields": {
+            "app_label": "sessions",
+            "model": "session"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 6,
+        "fields": {
+            "app_label": "app",
+            "model": "worker"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 7,
+        "fields": {
+            "app_label": "app",
+            "model": "cooperationchoice"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 8,
+        "fields": {
+            "app_label": "app",
+            "model": "cooperationdocumentchoice"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 9,
+        "fields": {
+            "app_label": "app",
+            "model": "fakultas"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 10,
+        "fields": {
+            "app_label": "app",
+            "model": "role"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 11,
+        "fields": {
+            "app_label": "app",
+            "model": "workerrole"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 12,
+        "fields": {
+            "app_label": "app",
+            "model": "user"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 13,
+        "fields": {
+            "app_label": "app",
+            "model": "prodi"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 14,
+        "fields": {
+            "app_label": "app",
+            "model": "institution"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 15,
+        "fields": {
+            "app_label": "app",
+            "model": "cooperationfile"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 16,
+        "fields": {
+            "app_label": "app",
+            "model": "cooperationducument"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "36ll8vcqctnfbdo0rxd0lis2nth5za73",
+        "fields": {
+            "session_data": ".eJxVzEsOwiAUheG9MBYClMLFoXPX0NwH2Kppkz5Gxr1rkw50fP7vvFSH29p321LmbhB1VsipELiopdikA0nWAMXrWnyO3lsUsur0ywj5Ucbdyh3H22R4Gtd5ILMn5lgXc52kPC9H-3fQ49J_dQWqkqikmBzkkCJEVyF6DsyMbcIgrfcBhLAyxmwbTA23FlyusZGq3h9Ek0HC:1pEBPk:2OUfs4NgZ4ZJj-cdedYJ2Ikq5AeQz5NkbvmMdpYr-QI",
+            "expire_date": "2023-01-21T15:47:20.338Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "uylqnlxi3cqqsk38z7pmraxyfqkoxbt1",
+        "fields": {
+            "session_data": ".eJxVjDsOwjAMQO-SmUQhthuFkZ0zVInt0AJqpX4mxN1ppQ4wv8_btHldunaddWp7MRfjS2CFyrYqNha1KbZkjjZiShwRSJXM6Tfb8FOHvZVHHu6j43FYpr64XXEHnd1tFH1dD_dv0OW522qkUpskhJQiRw0AoVRiDRUYpYqHKOIxiCY9F6LosWpABSDxlJL5fAFpzEHA:1pAMOJ:4PE_ESpR4iVAEKfE87XL96WqNelZoEC2KL4r2Dd3UYY",
+            "expire_date": "2023-01-11T02:42:03.310Z"
+        }
+    },
+    {
+        "model": "app.user",
+        "pk": "04578fcc-001a-49b6-871d-1486ddec76fc",
+        "fields": {
+            "created_at": "2023-01-07T17:38:22.168Z",
+            "updated_at": "2023-01-07T17:38:22.168Z",
+            "name": "nama",
+            "country": "Indonesia",
+            "address": "alamat",
+            "email": "a@ail.com",
+            "responsible_name": "nana",
+            "responsible_position": "nana",
+            "responsible_approval_name": "aaman",
+            "responsible_approval_position": "ana",
+            "is_active": true,
+            "institution": "afe25ab7-cb9c-48b6-b5f5-988655bb8323",
+            "cooperation_document": "59566c4b-3261-49c7-8bda-450318104a40",
+            "created_by": "c13dac47-9d36-4d25-a0a3-644be3904985",
+            "updated_by": "c13dac47-9d36-4d25-a0a3-644be3904985"
+        }
+    },
+    {
+        "model": "app.user",
+        "pk": "0c80f0ec-226a-4c5e-866d-d5999d7d3dac",
+        "fields": {
+            "created_at": "2022-12-31T13:03:48.347Z",
+            "updated_at": "2022-12-31T13:03:48.347Z",
+            "name": "user 2",
+            "country": "indonesia",
+            "address": "cikarang",
+            "email": "mailv@mail.com",
+            "responsible_name": "nama",
+            "responsible_position": "nama posisi",
+            "responsible_approval_name": "res nama",
+            "responsible_approval_position": "res position",
+            "is_active": true,
+            "institution": "2474d74e-89d1-4620-9fe2-bb6394d13859",
+            "cooperation_document": "0ef6daa8-54a2-4d43-a1e5-727d66364117",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5"
+        }
+    },
+    {
+        "model": "app.user",
+        "pk": "1c36edca-6fc4-4377-a750-5607c93cfc74",
+        "fields": {
+            "created_at": "2022-12-31T04:32:16.981Z",
+            "updated_at": "2022-12-31T04:32:16.981Z",
+            "name": "user 2",
+            "country": "indonesia",
+            "address": "cikarang",
+            "email": "mailv@mail.com",
+            "responsible_name": "nama",
+            "responsible_position": "nama posisi",
+            "responsible_approval_name": "res nama",
+            "responsible_approval_position": "res position",
+            "is_active": true,
+            "institution": "2474d74e-89d1-4620-9fe2-bb6394d13859",
+            "cooperation_document": "0f4ba279-abc5-410b-9d5a-cd973b3e4358",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5"
+        }
+    },
+    {
+        "model": "app.user",
+        "pk": "2232ccbc-18de-4921-b491-bc9f67d6a7bc",
+        "fields": {
+            "created_at": "2022-12-29T06:58:29.547Z",
+            "updated_at": "2022-12-29T06:58:29.547Z",
+            "name": "user 2",
+            "country": "indonesia",
+            "address": "cikarang",
+            "email": "mailv@mail.com",
+            "responsible_name": "responsible_name",
+            "responsible_position": "responsible+potition",
+            "responsible_approval_name": "",
+            "responsible_approval_position": "position",
+            "is_active": true,
+            "institution": "2474d74e-89d1-4620-9fe2-bb6394d13859",
+            "cooperation_document": "d3fd87f4-d6dd-40ee-88da-056e80572c3a",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5"
+        }
+    },
+    {
+        "model": "app.user",
+        "pk": "326a8a7e-5b6f-410c-81da-1fe1e9b8b71c",
+        "fields": {
+            "created_at": "2022-12-29T06:58:29.529Z",
+            "updated_at": "2022-12-29T06:58:29.529Z",
+            "name": "user 1",
+            "country": "indonesia",
+            "address": "CIkarang",
+            "email": "mailw@mail.com",
+            "responsible_name": "responsible_name",
+            "responsible_position": "responsible+potition",
+            "responsible_approval_name": "",
+            "responsible_approval_position": "position",
+            "is_active": true,
+            "institution": "2474d74e-89d1-4620-9fe2-bb6394d13859",
+            "cooperation_document": "d3fd87f4-d6dd-40ee-88da-056e80572c3a",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5"
+        }
+    },
+    {
+        "model": "app.user",
+        "pk": "46752068-4525-44a8-a4a3-f39af22f1447",
+        "fields": {
+            "created_at": "2022-12-29T07:08:54.825Z",
+            "updated_at": "2022-12-29T07:08:54.825Z",
+            "name": "user 1",
+            "country": "indonesia",
+            "address": "CIkarang",
+            "email": "mailw@mail.com",
+            "responsible_name": "responsible_name",
+            "responsible_position": "responsible+potition",
+            "responsible_approval_name": "",
+            "responsible_approval_position": "position",
+            "is_active": true,
+            "institution": "2474d74e-89d1-4620-9fe2-bb6394d13859",
+            "cooperation_document": "12be6cf9-4520-4242-8272-ef14a0f302ed",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5"
+        }
+    },
+    {
+        "model": "app.user",
+        "pk": "4dde0827-2e49-4cc6-9363-02caa250b292",
+        "fields": {
+            "created_at": "2022-12-31T13:03:48.335Z",
+            "updated_at": "2022-12-31T13:03:48.335Z",
+            "name": "user 1",
+            "country": "indonesia",
+            "address": "CIkarang",
+            "email": "mailw@mail.com",
+            "responsible_name": "nama",
+            "responsible_position": "nama posisi",
+            "responsible_approval_name": "res nama",
+            "responsible_approval_position": "res position",
+            "is_active": true,
+            "institution": "2474d74e-89d1-4620-9fe2-bb6394d13859",
+            "cooperation_document": "0ef6daa8-54a2-4d43-a1e5-727d66364117",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5"
+        }
+    },
+    {
+        "model": "app.user",
+        "pk": "52395982-893e-4dcb-874c-124384ab73bd",
+        "fields": {
+            "created_at": "2023-01-08T04:02:22.198Z",
+            "updated_at": "2023-01-08T04:02:22.198Z",
+            "name": "axel",
+            "country": "Indonesia",
+            "address": "axel",
+            "email": "axel@mail.com",
+            "responsible_name": "axel",
+            "responsible_position": "axel",
+            "responsible_approval_name": "xel",
+            "responsible_approval_position": "axel",
+            "is_active": true,
+            "institution": "2474d74e-89d1-4620-9fe2-bb6394d13859",
+            "cooperation_document": "b18fb446-5743-4080-a39f-2cf5ec19f079",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5"
+        }
+    },
+    {
+        "model": "app.user",
+        "pk": "7c466a60-7377-4f18-84a7-f2928aad1ba6",
+        "fields": {
+            "created_at": "2022-12-29T07:08:54.848Z",
+            "updated_at": "2022-12-29T07:08:54.848Z",
+            "name": "user 2",
+            "country": "indonesia",
+            "address": "cikarang",
+            "email": "mailv@mail.com",
+            "responsible_name": "responsible_name",
+            "responsible_position": "responsible+potition",
+            "responsible_approval_name": "",
+            "responsible_approval_position": "position",
+            "is_active": true,
+            "institution": "2474d74e-89d1-4620-9fe2-bb6394d13859",
+            "cooperation_document": "12be6cf9-4520-4242-8272-ef14a0f302ed",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5"
+        }
+    },
+    {
+        "model": "app.user",
+        "pk": "90c6b35d-7870-4540-bede-eaa03247d788",
+        "fields": {
+            "created_at": "2023-01-06T16:53:28.244Z",
+            "updated_at": "2023-01-06T16:53:28.244Z",
+            "name": "parner 2",
+            "country": "Indonesia",
+            "address": "alamat 2",
+            "email": "a@a.cpom",
+            "responsible_name": "nama",
+            "responsible_position": "nama",
+            "responsible_approval_name": "nam",
+            "responsible_approval_position": "jabatan",
+            "is_active": true,
+            "institution": "2474d74e-89d1-4620-9fe2-bb6394d13859",
+            "cooperation_document": "c9ee6ba2-536e-49fc-b8eb-099fd6adc7ad",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5"
+        }
+    },
+    {
+        "model": "app.user",
+        "pk": "9cd08319-e6a9-466e-896c-2e5b6a8ed7c4",
+        "fields": {
+            "created_at": "2022-12-31T04:32:16.968Z",
+            "updated_at": "2022-12-31T04:32:16.968Z",
+            "name": "user 1",
+            "country": "indonesia",
+            "address": "CIkarang",
+            "email": "mailw@mail.com",
+            "responsible_name": "nama",
+            "responsible_position": "nama posisi",
+            "responsible_approval_name": "res nama",
+            "responsible_approval_position": "res position",
+            "is_active": true,
+            "institution": "2474d74e-89d1-4620-9fe2-bb6394d13859",
+            "cooperation_document": "0f4ba279-abc5-410b-9d5a-cd973b3e4358",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5"
+        }
+    },
+    {
+        "model": "app.user",
+        "pk": "b13adf62-46f4-441f-8db0-025356ce950c",
+        "fields": {
+            "created_at": "2023-01-07T17:24:12.964Z",
+            "updated_at": "2023-01-07T17:32:18.542Z",
+            "name": "parten",
+            "country": "Indonesia",
+            "address": "alamat",
+            "email": "mail@mail.com",
+            "responsible_name": "nama",
+            "responsible_position": "nama",
+            "responsible_approval_name": "nama",
+            "responsible_approval_position": "jabatan",
+            "is_active": true,
+            "institution": "1ad488c7-b00e-4c3c-8de0-7e8fb5f666ca",
+            "cooperation_document": "7f36cab9-61e0-43e4-a4ab-3d660bc18951",
+            "created_by": "c13dac47-9d36-4d25-a0a3-644be3904985",
+            "updated_by": "c13dac47-9d36-4d25-a0a3-644be3904985"
+        }
+    },
+    {
+        "model": "app.user",
+        "pk": "be36f052-de1b-4b66-b98a-3193c15aacbd",
+        "fields": {
+            "created_at": "2023-01-06T17:04:27.668Z",
+            "updated_at": "2023-01-06T23:57:27.951Z",
+            "name": "parne edit 1",
+            "country": "Indonesia",
+            "address": "alamat edit",
+            "email": "S@mail.com",
+            "responsible_name": "nama",
+            "responsible_position": "nama",
+            "responsible_approval_name": "nama",
+            "responsible_approval_position": "nama",
+            "is_active": true,
+            "institution": "7de9afcb-0764-41a4-b039-61a944e8b05f",
+            "cooperation_document": "5b533ec9-c810-4282-a013-fe2e52fba03e",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5"
+        }
+    },
+    {
+        "model": "app.user",
+        "pk": "f56ade2e-57cc-435a-ad6d-15c0c4277ed8",
+        "fields": {
+            "created_at": "2023-01-06T16:53:28.254Z",
+            "updated_at": "2023-01-06T16:53:28.254Z",
+            "name": "parner 1",
+            "country": "Indonesia",
+            "address": "alamat 1",
+            "email": "amalam@mail.com",
+            "responsible_name": "nama",
+            "responsible_position": "nama",
+            "responsible_approval_name": "nama",
+            "responsible_approval_position": "jabatan",
+            "is_active": true,
+            "institution": "2474d74e-89d1-4620-9fe2-bb6394d13859",
+            "cooperation_document": "c9ee6ba2-536e-49fc-b8eb-099fd6adc7ad",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5"
+        }
+    },
+    {
+        "model": "app.role",
+        "pk": "8c012201-90f8-4718-9bb9-80fcc00ff5cc",
+        "fields": {
+            "is_active": true,
+            "name": "Admin"
+        }
+    },
+    {
+        "model": "app.role",
+        "pk": "f240e319-8a86-4682-adce-e6f05d61fe7b",
+        "fields": {
+            "is_active": true,
+            "name": "Dosen"
+        }
+    },
+    {
+        "model": "app.workerrole",
+        "pk": "5ec34875-1732-4c6a-a36d-e8ec6d38a40f",
+        "fields": {
+            "created_at": "2022-12-28T02:47:00.548Z",
+            "updated_at": "2022-12-28T02:47:00.548Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "worker": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "role": "8c012201-90f8-4718-9bb9-80fcc00ff5cc"
+        }
+    },
+    {
+        "model": "app.workerrole",
+        "pk": "a5cf96f2-6463-401d-9b8d-21f3973bdb27",
+        "fields": {
+            "created_at": "2023-01-07T17:05:47.059Z",
+            "updated_at": "2023-01-07T17:05:47.059Z",
+            "created_by": "c13dac47-9d36-4d25-a0a3-644be3904985",
+            "updated_by": "c13dac47-9d36-4d25-a0a3-644be3904985",
+            "worker": "c13dac47-9d36-4d25-a0a3-644be3904985",
+            "role": "f240e319-8a86-4682-adce-e6f05d61fe7b"
+        }
+    },
+    {
+        "model": "app.worker",
+        "pk": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+        "fields": {
+            "password": "pbkdf2_sha256$390000$yqQqGbs7lf2x6Pr9GcV0XQ$tXfyAqqoXrsf1eDMSIWmrs1dxW43IEMZMoIMjhLcQx8=",
+            "last_login": "2023-01-09T09:43:44.637Z",
+            "is_superuser": true,
+            "username": "sarikhin",
+            "first_name": "Sarikhin",
+            "last_name": ".",
+            "email": "sarikhinlovestory@gmail.com",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2022-12-28T02:41:57Z",
+            "address": "Cikarang",
+            "phone": "085311123828",
+            "prodi": "8e05928c-8729-4ac4-a816-ec4a201a4af6",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "app.worker",
+        "pk": "6303540c-40b6-450d-ba56-443fa4e72d34",
+        "fields": {
+            "password": "pbkdf2_sha256$390000$I066QHE6gEhhFMpNpAt6Cp$5OXZDBZai+niPt5TG1vw/awJlhhHKQuPJSTBEqnJ6oo=",
+            "last_login": "2022-12-05T07:51:26.149Z",
+            "is_superuser": true,
+            "username": "admin",
+            "first_name": "Super Admin",
+            "last_name": "",
+            "email": "coba@mail.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2022-12-05T07:51:14.461Z",
+            "address": "Cikarang Selatan",
+            "phone": "085311123828",
+            "prodi": "8e05928c-8729-4ac4-a816-ec4a201a4af6",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "app.worker",
+        "pk": "c13dac47-9d36-4d25-a0a3-644be3904985",
+        "fields": {
+            "password": "pbkdf2_sha256$390000$XRhAvAIkUrlX7DiX2ZOiIx$84TZeA5c/3spKysFZpfBdEeH+QY1NfHhoQlGlbRIRNk=",
+            "last_login": "2023-01-07T17:49:51.863Z",
+            "is_superuser": true,
+            "username": "dosen",
+            "first_name": "",
+            "last_name": "",
+            "email": "dosen@mail.com",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2023-01-07T17:05:01Z",
+            "address": "Cikarang",
+            "phone": null,
+            "prodi": "8e05928c-8729-4ac4-a816-ec4a201a4af6",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "app.cooperationchoice",
+        "pk": "183a7efe-c969-4390-b674-6a9dc310a213",
+        "fields": {
+            "created_at": "2023-01-09T08:26:57.787Z",
+            "updated_at": "2023-01-09T08:27:07.109Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "name": "Asistensi Manager di Satuan Pendidikan Kampus Merdeka",
+            "is_active": true
+        }
+    },
+    {
+        "model": "app.cooperationchoice",
+        "pk": "2a8481a5-fcf0-40ab-a209-9f2a8a1bfc33",
+        "fields": {
+            "created_at": "2023-01-09T08:24:25.572Z",
+            "updated_at": "2023-01-09T08:24:25.572Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "name": "Pelatihan Dosen dan Instruktur",
+            "is_active": true
+        }
+    },
+    {
+        "model": "app.cooperationchoice",
+        "pk": "2eaca129-3637-446e-8568-ec7a195fa008",
+        "fields": {
+            "created_at": "2022-12-05T07:51:45.982Z",
+            "updated_at": "2023-01-09T07:34:13.378Z",
+            "created_by": "6303540c-40b6-450d-ba56-443fa4e72d34",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "name": "Penelitian Bersama - Prototipe",
+            "is_active": true
+        }
+    },
+    {
+        "model": "app.cooperationchoice",
+        "pk": "30f5ca64-1be0-4985-8845-58f7e0cfee36",
+        "fields": {
+            "created_at": "2023-01-09T08:21:42.549Z",
+            "updated_at": "2023-01-09T08:21:42.549Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "name": "Membangun Desa/KKN Tematik Kampus Merdeka",
+            "is_active": true
+        }
+    },
+    {
+        "model": "app.cooperationchoice",
+        "pk": "3285cf06-509d-4036-a9df-dcb23505019d",
+        "fields": {
+            "created_at": "2023-01-09T08:26:25.790Z",
+            "updated_at": "2023-01-09T08:26:25.790Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "name": "Penelitian Bersama",
+            "is_active": true
+        }
+    },
+    {
+        "model": "app.cooperationchoice",
+        "pk": "46a4ae5c-8443-45cf-bd86-4496668ef1fd",
+        "fields": {
+            "created_at": "2023-01-09T08:22:20.056Z",
+            "updated_at": "2023-01-09T08:22:20.056Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "name": "Pertukanran Pelajar Kampus Merdeka",
+            "is_active": true
+        }
+    },
+    {
+        "model": "app.cooperationchoice",
+        "pk": "55860a24-0790-4989-8d96-9a5f20e113b3",
+        "fields": {
+            "created_at": "2023-01-09T08:20:46.024Z",
+            "updated_at": "2023-01-09T08:20:46.024Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "name": "Kegiatan Wirausaha Kampus Merdeka",
+            "is_active": true
+        }
+    },
+    {
+        "model": "app.cooperationchoice",
+        "pk": "5c3e28fc-dc5e-441f-be63-63719c0bd857",
+        "fields": {
+            "created_at": "2022-12-05T07:51:44.118Z",
+            "updated_at": "2023-01-09T07:21:08.109Z",
+            "created_by": "6303540c-40b6-450d-ba56-443fa4e72d34",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "name": "Penelitian Bersama - Paten",
+            "is_active": true
+        }
+    },
+    {
+        "model": "app.cooperationchoice",
+        "pk": "6e49c3b4-139e-483d-be45-f83ca2afcac9",
+        "fields": {
+            "created_at": "2023-01-09T08:22:03.596Z",
+            "updated_at": "2023-01-09T08:22:03.596Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "name": "Penelitian/RIset Kampus Merdeka",
+            "is_active": true
+        }
+    },
+    {
+        "model": "app.cooperationchoice",
+        "pk": "7714bb68-2027-49e4-8285-70f2a7022c2c",
+        "fields": {
+            "created_at": "2023-01-09T08:21:15.788Z",
+            "updated_at": "2023-01-09T08:21:15.788Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "name": "Magang/Praktek kerja Kampus Merdeka",
+            "is_active": true
+        }
+    },
+    {
+        "model": "app.cooperationchoice",
+        "pk": "7da5b713-2364-422d-8b13-af4903149724",
+        "fields": {
+            "created_at": "2023-01-09T08:23:05.440Z",
+            "updated_at": "2023-01-09T08:23:05.440Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "name": "Studi/Proyek Independen Kampus Merdeka",
+            "is_active": true
+        }
+    },
+    {
+        "model": "app.cooperationchoice",
+        "pk": "7e87dc70-9811-492b-beb9-028eb01889f3",
+        "fields": {
+            "created_at": "2023-01-09T08:25:44.757Z",
+            "updated_at": "2023-01-09T08:25:44.757Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "name": "Pengembangan Sistem atau Produk",
+            "is_active": true
+        }
+    },
+    {
+        "model": "app.cooperationchoice",
+        "pk": "88693ee5-6c47-44b5-a8c3-006593d65777",
+        "fields": {
+            "created_at": "2023-01-09T08:25:26.948Z",
+            "updated_at": "2023-01-09T08:25:26.948Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "name": "Pengembangan Pusat Penelitian dan Pengembangan Keilmuan",
+            "is_active": true
+        }
+    },
+    {
+        "model": "app.cooperationchoice",
+        "pk": "8d87c38e-4019-419d-baa2-8bd4d7ae7ca1",
+        "fields": {
+            "created_at": "2022-12-05T08:08:32.232Z",
+            "updated_at": "2023-01-09T07:53:57.132Z",
+            "created_by": "6303540c-40b6-450d-ba56-443fa4e72d34",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "name": "Pertukaran Mahasiswa",
+            "is_active": true
+        }
+    },
+    {
+        "model": "app.cooperationchoice",
+        "pk": "8edddaae-d23b-4530-b5ff-f0ab09d8ac68",
+        "fields": {
+            "created_at": "2023-01-09T08:26:12.147Z",
+            "updated_at": "2023-01-09T08:26:12.147Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "name": "Penelitian Bersama - Artike/Jurnal Ilmiah",
+            "is_active": true
+        }
+    },
+    {
+        "model": "app.cooperationchoice",
+        "pk": "95a03dbc-2c37-4560-85d6-fd200ac237ef",
+        "fields": {
+            "created_at": "2023-01-09T08:24:40.674Z",
+            "updated_at": "2023-01-09T08:24:40.675Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "name": "Transfer Kredit",
+            "is_active": true
+        }
+    },
+    {
+        "model": "app.cooperationchoice",
+        "pk": "95b26b27-f824-4e39-9fdf-2f29eb209759",
+        "fields": {
+            "created_at": "2023-01-09T08:23:41.133Z",
+            "updated_at": "2023-01-09T08:23:41.133Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "name": "Penyaluran Lulusan",
+            "is_active": true
+        }
+    },
+    {
+        "model": "app.cooperationchoice",
+        "pk": "a3b4f453-8905-41bb-bda3-444f63c977b5",
+        "fields": {
+            "created_at": "2023-01-09T08:19:46.275Z",
+            "updated_at": "2023-01-09T08:20:02.942Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "name": "Pertukaran Dosen",
+            "is_active": true
+        }
+    },
+    {
+        "model": "app.cooperationchoice",
+        "pk": "ab6eadb9-80b0-440e-b28f-28b0663f3e4a",
+        "fields": {
+            "created_at": "2023-01-09T08:23:23.218Z",
+            "updated_at": "2023-01-09T08:23:23.218Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "name": "Gelar Ganda (Dual Degree)",
+            "is_active": true
+        }
+    },
+    {
+        "model": "app.cooperationchoice",
+        "pk": "af46ab29-74f3-42cf-8d1d-a92f4688d6d3",
+        "fields": {
+            "created_at": "2023-01-09T07:55:33.054Z",
+            "updated_at": "2023-01-09T07:55:33.054Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "name": "Penerbiatan Berkala Ilmiah",
+            "is_active": true
+        }
+    },
+    {
+        "model": "app.cooperationchoice",
+        "pk": "bc93c7ba-0e28-4247-958a-7e7196302276",
+        "fields": {
+            "created_at": "2023-01-09T08:20:25.103Z",
+            "updated_at": "2023-01-09T08:20:25.103Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "name": "Pengembangan Kurikulum/Program Bersama",
+            "is_active": true
+        }
+    },
+    {
+        "model": "app.cooperationchoice",
+        "pk": "bf26614b-1174-46a3-833a-d7c0366933dd",
+        "fields": {
+            "created_at": "2023-01-09T07:56:21.165Z",
+            "updated_at": "2023-01-09T07:56:21.165Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "name": "Pemagangan",
+            "is_active": true
+        }
+    },
+    {
+        "model": "app.cooperationchoice",
+        "pk": "c0af2b2e-0d9e-458c-a05f-29871d3fed65",
+        "fields": {
+            "created_at": "2023-01-09T08:02:24.845Z",
+            "updated_at": "2023-01-09T08:04:24.131Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "name": "penyelenggaraan Seminar / Konfrensi Ilmiah",
+            "is_active": true
+        }
+    },
+    {
+        "model": "app.cooperationchoice",
+        "pk": "c6e7f73c-2e1f-4c08-b6d2-01e2fe93acd2",
+        "fields": {
+            "created_at": "2023-01-09T08:23:59.025Z",
+            "updated_at": "2023-01-09T08:23:59.025Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "name": "Pengiriman Praktisi sebagai Dosen",
+            "is_active": true
+        }
+    },
+    {
+        "model": "app.cooperationchoice",
+        "pk": "ca90b231-378b-4bdf-9f57-d98ad876fcea",
+        "fields": {
+            "created_at": "2023-01-09T08:19:28.737Z",
+            "updated_at": "2023-01-09T08:19:28.737Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "name": "Pengabdian Kepada Masyarakat",
+            "is_active": true
+        }
+    },
+    {
+        "model": "app.cooperationchoice",
+        "pk": "da35737e-81fc-4486-ba84-d73404a0d8b0",
+        "fields": {
+            "created_at": "2023-01-09T08:24:54.968Z",
+            "updated_at": "2023-01-09T08:24:54.968Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "name": "Visiting Profesor",
+            "is_active": true
+        }
+    },
+    {
+        "model": "app.cooperationchoice",
+        "pk": "eb3630eb-9a3d-456f-a34c-52fc7e5b503e",
+        "fields": {
+            "created_at": "2023-01-09T08:22:45.621Z",
+            "updated_at": "2023-01-09T08:22:45.621Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "name": "Proyek Kemanusiaan Kampus Merdeka",
+            "is_active": true
+        }
+    },
+    {
+        "model": "app.cooperationchoice",
+        "pk": "f0c81988-906f-4f5e-a8a3-56ea45f136f3",
+        "fields": {
+            "created_at": "2022-12-05T07:51:41.426Z",
+            "updated_at": "2023-01-09T07:20:30.001Z",
+            "created_by": "6303540c-40b6-450d-ba56-443fa4e72d34",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "name": "Gelar Bersama (Join Degree)",
+            "is_active": true
+        }
+    },
+    {
+        "model": "app.cooperationducument",
+        "pk": "0ef6daa8-54a2-4d43-a1e5-727d66364117",
+        "fields": {
+            "created_at": "2022-12-31T13:03:48.299Z",
+            "updated_at": "2022-12-31T13:03:48.299Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "number": 4,
+            "name": "kerja sama 2",
+            "type": 1,
+            "period": 2,
+            "start_date": "2022-12-12",
+            "end_date": "2022-12-12",
+            "date_end": "2022-12-12",
+            "status": 1,
+            "expied_date": "2023-06-30T20:03:48.298Z",
+            "files": null
+        }
+    },
+    {
+        "model": "app.cooperationducument",
+        "pk": "0f4ba279-abc5-410b-9d5a-cd973b3e4358",
+        "fields": {
+            "created_at": "2022-12-31T04:32:16.912Z",
+            "updated_at": "2022-12-31T04:32:16.913Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "number": 3,
+            "name": "kerja sama 2",
+            "type": 1,
+            "period": 2,
+            "start_date": null,
+            "end_date": null,
+            "date_end": null,
+            "status": 1,
+            "expied_date": "2023-06-30T11:32:16.912Z",
+            "files": null
+        }
+    },
+    {
+        "model": "app.cooperationducument",
+        "pk": "12be6cf9-4520-4242-8272-ef14a0f302ed",
+        "fields": {
+            "created_at": "2022-12-29T07:08:54.741Z",
+            "updated_at": "2023-01-06T07:24:17.384Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "number": 2,
+            "name": "kerja sama 2",
+            "type": 1,
+            "period": 2,
+            "start_date": null,
+            "end_date": null,
+            "date_end": null,
+            "status": 1,
+            "expied_date": "2023-06-29T14:08:54.739Z",
+            "files": "fb521d74-8d4b-449b-86f0-3462a5a6f8c1"
+        }
+    },
+    {
+        "model": "app.cooperationducument",
+        "pk": "59566c4b-3261-49c7-8bda-450318104a40",
+        "fields": {
+            "created_at": "2023-01-07T17:38:22.150Z",
+            "updated_at": "2023-01-07T17:41:47.809Z",
+            "created_by": "c13dac47-9d36-4d25-a0a3-644be3904985",
+            "updated_by": "c13dac47-9d36-4d25-a0a3-644be3904985",
+            "number": 8,
+            "name": "aaa",
+            "type": 3,
+            "period": 2,
+            "start_date": null,
+            "end_date": null,
+            "date_end": "2023-01-28",
+            "status": 2,
+            "expied_date": "2023-07-08T00:38:22.150Z",
+            "files": "cfe69e25-fd08-4080-b509-b890d2b5a18d"
+        }
+    },
+    {
+        "model": "app.cooperationducument",
+        "pk": "5b533ec9-c810-4282-a013-fe2e52fba03e",
+        "fields": {
+            "created_at": "2023-01-06T17:04:27.649Z",
+            "updated_at": "2023-01-07T15:03:10.690Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "number": 6,
+            "name": "pengajuan edit 1 2 3",
+            "type": 2,
+            "period": 1,
+            "start_date": "2023-01-07",
+            "end_date": "2023-01-27",
+            "date_end": null,
+            "status": 2,
+            "expied_date": "2023-07-07T00:04:27.649Z",
+            "files": "d4ed387d-64d5-42d4-9cf9-f662e7df61e4"
+        }
+    },
+    {
+        "model": "app.cooperationducument",
+        "pk": "7f36cab9-61e0-43e4-a4ab-3d660bc18951",
+        "fields": {
+            "created_at": "2023-01-07T17:24:12.925Z",
+            "updated_at": "2023-01-07T17:39:50.852Z",
+            "created_by": "c13dac47-9d36-4d25-a0a3-644be3904985",
+            "updated_by": "c13dac47-9d36-4d25-a0a3-644be3904985",
+            "number": 7,
+            "name": "kerjasama dosen",
+            "type": 1,
+            "period": 2,
+            "start_date": null,
+            "end_date": null,
+            "date_end": "2023-01-31",
+            "status": 2,
+            "expied_date": "2023-07-08T00:24:12.923Z",
+            "files": "a79ac6c9-6363-4377-b0d4-a334e89e7dff"
+        }
+    },
+    {
+        "model": "app.cooperationducument",
+        "pk": "b18fb446-5743-4080-a39f-2cf5ec19f079",
+        "fields": {
+            "created_at": "2023-01-08T04:02:22.155Z",
+            "updated_at": "2023-01-09T09:31:23.768Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "number": 9,
+            "name": "Kerjasama axel",
+            "type": 3,
+            "period": 1,
+            "start_date": "2023-01-08",
+            "end_date": "2023-01-31",
+            "date_end": null,
+            "status": 6,
+            "expied_date": "2023-07-08T11:02:22.155Z",
+            "files": "579b7b0c-826c-4b04-b9ab-dd880b09bdd5"
+        }
+    },
+    {
+        "model": "app.cooperationducument",
+        "pk": "c9ee6ba2-536e-49fc-b8eb-099fd6adc7ad",
+        "fields": {
+            "created_at": "2023-01-06T16:53:28.207Z",
+            "updated_at": "2023-01-06T16:53:28.207Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "number": 5,
+            "name": "kerjasama permanen",
+            "type": 1,
+            "period": 1,
+            "start_date": "2023-01-06",
+            "end_date": "2023-01-06",
+            "date_end": null,
+            "status": 1,
+            "expied_date": "2023-07-06T23:53:28.206Z",
+            "files": null
+        }
+    },
+    {
+        "model": "app.cooperationducument",
+        "pk": "d3fd87f4-d6dd-40ee-88da-056e80572c3a",
+        "fields": {
+            "created_at": "2022-12-29T06:58:29.474Z",
+            "updated_at": "2023-01-06T06:51:07.613Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "number": 1,
+            "name": "kerja sama 1",
+            "type": 1,
+            "period": 2,
+            "start_date": null,
+            "end_date": null,
+            "date_end": null,
+            "status": 1,
+            "expied_date": "2023-06-29T13:58:29.473Z",
+            "files": "f5450098-16f8-4409-9778-d2c43b8ba8db"
+        }
+    },
+    {
+        "model": "app.cooperationfile",
+        "pk": "579b7b0c-826c-4b04-b9ab-dd880b09bdd5",
+        "fields": {
+            "created_at": "2023-01-08T04:38:35.991Z",
+            "updated_at": "2023-01-08T04:38:35.992Z",
+            "created_by": null,
+            "updated_by": null,
+            "photo": "siskerma/file/579b7b0c-826c-4b04-b9ab-dd880b09bdd5.png",
+            "document": "siskerma/file/579b7b0c-826c-4b04-b9ab-dd880b09bdd5.pdf",
+            "url": "https://www.google.com"
+        }
+    },
+    {
+        "model": "app.cooperationfile",
+        "pk": "a79ac6c9-6363-4377-b0d4-a334e89e7dff",
+        "fields": {
+            "created_at": "2023-01-07T17:39:50.831Z",
+            "updated_at": "2023-01-07T17:39:50.831Z",
+            "created_by": null,
+            "updated_by": null,
+            "photo": "siskerma/file/a79ac6c9-6363-4377-b0d4-a334e89e7dff.jpg",
+            "document": "siskerma/file/a79ac6c9-6363-4377-b0d4-a334e89e7dff.pdf",
+            "url": "https://www.fluttercampus.com/guide/223/popup-menu-on-flutter-appbar/"
+        }
+    },
+    {
+        "model": "app.cooperationfile",
+        "pk": "cfe69e25-fd08-4080-b509-b890d2b5a18d",
+        "fields": {
+            "created_at": "2023-01-07T17:41:47.790Z",
+            "updated_at": "2023-01-07T17:41:47.790Z",
+            "created_by": null,
+            "updated_by": null,
+            "photo": "siskerma/file/cfe69e25-fd08-4080-b509-b890d2b5a18d.jpg",
+            "document": "siskerma/file/cfe69e25-fd08-4080-b509-b890d2b5a18d.pdf",
+            "url": "https://www.fluttercampus.com/guide/223/popup-menu-on-flutter-appbar/"
+        }
+    },
+    {
+        "model": "app.cooperationfile",
+        "pk": "d4ed387d-64d5-42d4-9cf9-f662e7df61e4",
+        "fields": {
+            "created_at": "2023-01-07T14:47:48.252Z",
+            "updated_at": "2023-01-07T14:47:48.252Z",
+            "created_by": null,
+            "updated_by": null,
+            "photo": "siskerma/file/d4ed387d-64d5-42d4-9cf9-f662e7df61e4.jpg",
+            "document": "siskerma/file/d4ed387d-64d5-42d4-9cf9-f662e7df61e4.pdf",
+            "url": "https://stackoverflow.com/questions/57509972/flutter-dio-how-to-upload-image"
+        }
+    },
+    {
+        "model": "app.cooperationfile",
+        "pk": "f5450098-16f8-4409-9778-d2c43b8ba8db",
+        "fields": {
+            "created_at": "2023-01-06T06:51:01.187Z",
+            "updated_at": "2023-01-06T06:51:01.187Z",
+            "created_by": null,
+            "updated_by": null,
+            "photo": "siskerma/file/f5450098-16f8-4409-9778-d2c43b8ba8db.jpg",
+            "document": "siskerma/file/f5450098-16f8-4409-9778-d2c43b8ba8db.pdf",
+            "url": "https://dev.to/thomz/uploading-images-to-django-rest-framework-from-forms-in-react-3jhj"
+        }
+    },
+    {
+        "model": "app.cooperationfile",
+        "pk": "fb521d74-8d4b-449b-86f0-3462a5a6f8c1",
+        "fields": {
+            "created_at": "2023-01-06T07:24:15.512Z",
+            "updated_at": "2023-01-06T07:24:15.512Z",
+            "created_by": null,
+            "updated_by": null,
+            "photo": "siskerma/file/fb521d74-8d4b-449b-86f0-3462a5a6f8c1.jpg",
+            "document": "siskerma/file/fb521d74-8d4b-449b-86f0-3462a5a6f8c1.pdf",
+            "url": "https://dev.to/thomz/uploading-images-to-django-rest-framework-from-forms-in-react-3jhj"
+        }
+    },
+    {
+        "model": "app.cooperationdocumentchoice",
+        "pk": "0c328d59-de05-4907-9d37-1b99132b3135",
+        "fields": {
+            "created_at": "2023-01-06T17:50:58.493Z",
+            "updated_at": "2023-01-06T17:50:58.493Z",
+            "created_by": null,
+            "updated_by": null,
+            "document": "5b533ec9-c810-4282-a013-fe2e52fba03e",
+            "choice": "5c3e28fc-dc5e-441f-be63-63719c0bd857"
+        }
+    },
+    {
+        "model": "app.cooperationdocumentchoice",
+        "pk": "0ea961f1-b918-400e-b8fc-23e75d0bd6c6",
+        "fields": {
+            "created_at": "2023-01-07T17:24:12.954Z",
+            "updated_at": "2023-01-07T17:24:12.954Z",
+            "created_by": null,
+            "updated_by": null,
+            "document": "7f36cab9-61e0-43e4-a4ab-3d660bc18951",
+            "choice": "8d87c38e-4019-419d-baa2-8bd4d7ae7ca1"
+        }
+    },
+    {
+        "model": "app.cooperationdocumentchoice",
+        "pk": "1631ba0a-51ab-469b-a244-176d5bbf02fc",
+        "fields": {
+            "created_at": "2023-01-08T04:02:22.191Z",
+            "updated_at": "2023-01-08T04:02:22.191Z",
+            "created_by": null,
+            "updated_by": null,
+            "document": "b18fb446-5743-4080-a39f-2cf5ec19f079",
+            "choice": "5c3e28fc-dc5e-441f-be63-63719c0bd857"
+        }
+    },
+    {
+        "model": "app.cooperationdocumentchoice",
+        "pk": "18ea9188-14a9-465a-a624-642f02c15d84",
+        "fields": {
+            "created_at": "2023-01-06T16:53:28.238Z",
+            "updated_at": "2023-01-06T16:53:28.238Z",
+            "created_by": null,
+            "updated_by": null,
+            "document": "c9ee6ba2-536e-49fc-b8eb-099fd6adc7ad",
+            "choice": "f0c81988-906f-4f5e-a8a3-56ea45f136f3"
+        }
+    },
+    {
+        "model": "app.cooperationdocumentchoice",
+        "pk": "22b42309-b8dd-4f71-812c-81ac4773a5ae",
+        "fields": {
+            "created_at": "2023-01-07T17:38:22.163Z",
+            "updated_at": "2023-01-07T17:38:22.163Z",
+            "created_by": null,
+            "updated_by": null,
+            "document": "59566c4b-3261-49c7-8bda-450318104a40",
+            "choice": "2eaca129-3637-446e-8568-ec7a195fa008"
+        }
+    },
+    {
+        "model": "app.cooperationdocumentchoice",
+        "pk": "3136d8da-93a8-4f52-be57-c5bab9affd7f",
+        "fields": {
+            "created_at": "2022-12-31T04:32:16.955Z",
+            "updated_at": "2022-12-31T04:32:16.955Z",
+            "created_by": null,
+            "updated_by": null,
+            "document": "0f4ba279-abc5-410b-9d5a-cd973b3e4358",
+            "choice": "f0c81988-906f-4f5e-a8a3-56ea45f136f3"
+        }
+    },
+    {
+        "model": "app.cooperationdocumentchoice",
+        "pk": "429b07b9-92a6-422f-9d5d-28a87c567169",
+        "fields": {
+            "created_at": "2023-01-06T17:04:27.665Z",
+            "updated_at": "2023-01-06T17:04:27.665Z",
+            "created_by": null,
+            "updated_by": null,
+            "document": "5b533ec9-c810-4282-a013-fe2e52fba03e",
+            "choice": "8d87c38e-4019-419d-baa2-8bd4d7ae7ca1"
+        }
+    },
+    {
+        "model": "app.cooperationdocumentchoice",
+        "pk": "52dbb72a-9ff1-4a23-af30-ff4c14fe5467",
+        "fields": {
+            "created_at": "2023-01-07T17:38:22.162Z",
+            "updated_at": "2023-01-07T17:38:22.163Z",
+            "created_by": null,
+            "updated_by": null,
+            "document": "59566c4b-3261-49c7-8bda-450318104a40",
+            "choice": "5c3e28fc-dc5e-441f-be63-63719c0bd857"
+        }
+    },
+    {
+        "model": "app.cooperationdocumentchoice",
+        "pk": "5d604a2c-ca19-4430-bbe9-f2ab3ca4c1a5",
+        "fields": {
+            "created_at": "2023-01-07T17:38:22.163Z",
+            "updated_at": "2023-01-07T17:38:22.163Z",
+            "created_by": null,
+            "updated_by": null,
+            "document": "59566c4b-3261-49c7-8bda-450318104a40",
+            "choice": "8d87c38e-4019-419d-baa2-8bd4d7ae7ca1"
+        }
+    },
+    {
+        "model": "app.cooperationdocumentchoice",
+        "pk": "70e91713-54be-4b32-bec1-b35a548d856b",
+        "fields": {
+            "created_at": "2022-12-31T13:03:48.320Z",
+            "updated_at": "2022-12-31T13:03:48.320Z",
+            "created_by": null,
+            "updated_by": null,
+            "document": "0ef6daa8-54a2-4d43-a1e5-727d66364117",
+            "choice": "f0c81988-906f-4f5e-a8a3-56ea45f136f3"
+        }
+    },
+    {
+        "model": "app.cooperationdocumentchoice",
+        "pk": "7c295822-ec2e-47cc-9743-cb0814abd929",
+        "fields": {
+            "created_at": "2023-01-07T17:24:12.955Z",
+            "updated_at": "2023-01-07T17:24:12.955Z",
+            "created_by": null,
+            "updated_by": null,
+            "document": "7f36cab9-61e0-43e4-a4ab-3d660bc18951",
+            "choice": "2eaca129-3637-446e-8568-ec7a195fa008"
+        }
+    },
+    {
+        "model": "app.cooperationdocumentchoice",
+        "pk": "8015b00f-35e7-4a58-818a-9442ecf6d74a",
+        "fields": {
+            "created_at": "2023-01-07T17:38:22.163Z",
+            "updated_at": "2023-01-07T17:38:22.163Z",
+            "created_by": null,
+            "updated_by": null,
+            "document": "59566c4b-3261-49c7-8bda-450318104a40",
+            "choice": "f0c81988-906f-4f5e-a8a3-56ea45f136f3"
+        }
+    },
+    {
+        "model": "app.cooperationdocumentchoice",
+        "pk": "8232d8d8-a462-4b4d-8251-5e35923a20e8",
+        "fields": {
+            "created_at": "2023-01-06T17:50:58.493Z",
+            "updated_at": "2023-01-06T17:50:58.493Z",
+            "created_by": null,
+            "updated_by": null,
+            "document": "5b533ec9-c810-4282-a013-fe2e52fba03e",
+            "choice": "2eaca129-3637-446e-8568-ec7a195fa008"
+        }
+    },
+    {
+        "model": "app.cooperationdocumentchoice",
+        "pk": "9af5249e-8ccb-4910-b1dd-8fb5d601d192",
+        "fields": {
+            "created_at": "2022-12-29T06:58:29.509Z",
+            "updated_at": "2022-12-29T06:58:29.509Z",
+            "created_by": null,
+            "updated_by": null,
+            "document": "d3fd87f4-d6dd-40ee-88da-056e80572c3a",
+            "choice": "f0c81988-906f-4f5e-a8a3-56ea45f136f3"
+        }
+    },
+    {
+        "model": "app.cooperationdocumentchoice",
+        "pk": "c51e05f8-2015-4aa8-9a55-913120478738",
+        "fields": {
+            "created_at": "2023-01-06T16:53:28.238Z",
+            "updated_at": "2023-01-06T16:53:28.238Z",
+            "created_by": null,
+            "updated_by": null,
+            "document": "c9ee6ba2-536e-49fc-b8eb-099fd6adc7ad",
+            "choice": "8d87c38e-4019-419d-baa2-8bd4d7ae7ca1"
+        }
+    },
+    {
+        "model": "app.cooperationdocumentchoice",
+        "pk": "c8460e56-57b4-41f9-ad24-b54628de537b",
+        "fields": {
+            "created_at": "2022-12-29T07:08:54.804Z",
+            "updated_at": "2022-12-29T07:08:54.804Z",
+            "created_by": null,
+            "updated_by": null,
+            "document": "12be6cf9-4520-4242-8272-ef14a0f302ed",
+            "choice": "f0c81988-906f-4f5e-a8a3-56ea45f136f3"
+        }
+    },
+    {
+        "model": "app.institution",
+        "pk": "1ad488c7-b00e-4c3c-8de0-7e8fb5f666ca",
+        "fields": {
+            "created_at": "2022-12-31T13:18:46.155Z",
+            "updated_at": "2023-01-09T08:35:15.457Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "name": "Organisasi Luar Negeri",
+            "is_active": true
+        }
+    },
+    {
+        "model": "app.institution",
+        "pk": "2474d74e-89d1-4620-9fe2-bb6394d13859",
+        "fields": {
+            "created_at": "2022-12-29T06:58:11.529Z",
+            "updated_at": "2023-01-09T08:31:22.717Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "name": "Dunia Usaha Dalam Negeri",
+            "is_active": true
+        }
+    },
+    {
+        "model": "app.institution",
+        "pk": "3cca6836-4903-497c-b59c-1d6fef355156",
+        "fields": {
+            "created_at": "2022-12-31T13:18:38.672Z",
+            "updated_at": "2023-01-09T08:31:48.887Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "name": "Dunia Usaha Dalam Negeri",
+            "is_active": true
+        }
+    },
+    {
+        "model": "app.institution",
+        "pk": "6f7c3534-bdce-4cc9-9802-6513cf7b3a43",
+        "fields": {
+            "created_at": "2022-12-31T13:18:42.626Z",
+            "updated_at": "2023-01-09T08:33:10.769Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "name": "Institusi Pendidikan LN",
+            "is_active": true
+        }
+    },
+    {
+        "model": "app.institution",
+        "pk": "7de9afcb-0764-41a4-b039-61a944e8b05f",
+        "fields": {
+            "created_at": "2022-12-31T13:18:41.045Z",
+            "updated_at": "2023-01-09T08:32:33.674Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "name": "Institusi Pendidikan DN",
+            "is_active": true
+        }
+    },
+    {
+        "model": "app.institution",
+        "pk": "afe25ab7-cb9c-48b6-b5f5-988655bb8323",
+        "fields": {
+            "created_at": "2022-12-31T13:18:44.253Z",
+            "updated_at": "2023-01-09T08:34:05.344Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "name": "Organisasi Dalam Negeri",
+            "is_active": true
+        }
+    },
+    {
+        "model": "app.institution",
+        "pk": "c49fd9c0-9b39-4213-b31a-188c423be0da",
+        "fields": {
+            "created_at": "2022-12-31T13:18:48.134Z",
+            "updated_at": "2023-01-09T08:35:48.434Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "name": "Institusi Pemerintahan DN",
+            "is_active": true
+        }
+    },
+    {
+        "model": "app.institution",
+        "pk": "edca7722-ae49-4eb4-a38b-4f4c7f723446",
+        "fields": {
+            "created_at": "2022-12-31T13:18:50.008Z",
+            "updated_at": "2023-01-09T08:36:14.475Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "name": "Institusi Pemerintahan LN",
+            "is_active": true
+        }
+    },
+    {
+        "model": "app.fakultas",
+        "pk": "1a7920cf-c32a-4f52-b2c2-803495a8a8a8",
+        "fields": {
+            "created_at": "2022-12-28T02:45:20.469Z",
+            "updated_at": "2023-01-09T07:37:31.814Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "name": "Fakultas Ekonomi Manajemen",
+            "is_active": true
+        }
+    },
+    {
+        "model": "app.fakultas",
+        "pk": "434a6099-b4de-4e4c-a83d-9897f4b9014c",
+        "fields": {
+            "created_at": "2023-01-09T07:47:48.544Z",
+            "updated_at": "2023-01-09T07:47:48.544Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "name": "Fakultas Ilmu Pendidikan dan Humaniora (FIPHUM)",
+            "is_active": true
+        }
+    },
+    {
+        "model": "app.fakultas",
+        "pk": "4cbf3677-b3c0-4c08-9ebb-743f0ce0b061",
+        "fields": {
+            "created_at": "2023-01-09T07:42:58.450Z",
+            "updated_at": "2023-01-09T07:42:58.450Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "name": "Fakultas Teknik",
+            "is_active": true
+        }
+    },
+    {
+        "model": "app.fakultas",
+        "pk": "94c6ed9a-016d-40c0-9fdc-308ed13eb83a",
+        "fields": {
+            "created_at": "2023-01-09T07:45:12.718Z",
+            "updated_at": "2023-01-09T07:45:12.718Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "name": "Fakultas Agama Islam",
+            "is_active": true
+        }
+    },
+    {
+        "model": "app.prodi",
+        "pk": "8e05928c-8729-4ac4-a816-ec4a201a4af6",
+        "fields": {
+            "created_at": "2022-12-28T02:45:27.572Z",
+            "updated_at": "2022-12-28T02:45:27.572Z",
+            "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5",
+            "name": "Prodi A",
+            "is_active": true,
+            "fakultas": "1a7920cf-c32a-4f52-b2c2-803495a8a8a8"
+        }
+    }
+]
