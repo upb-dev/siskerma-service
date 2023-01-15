@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'drf_yasg2',
     'django_filters',
     'rest_framework_simplejwt',
+    'django_rest_passwordreset',
 ]
 
 MIDDLEWARE = [
@@ -220,3 +221,11 @@ SIMPLE_JWT = {
 
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'mediafiles')
 MEDIA_URL = '/media/'
+
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')

@@ -3,6 +3,7 @@ from siskerma.app.models import Fakultas
 
 
 class FakultasSerializer(BaseModelSerializer):
+
     class Meta:
         model = Fakultas
-        fields = '__all__'
+        fields = ['id', 'name', 'is_active', 'created_by', 'updated_by', 'created_at', 'updated_at']

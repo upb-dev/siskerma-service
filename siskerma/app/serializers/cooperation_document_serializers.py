@@ -1,5 +1,5 @@
 from siskerma.app.serializers.base_models_serializer import BaseModelSerializer
-from siskerma.app.models import CooperationDucument, CooperationChoice, History, Institution, User
+from siskerma.app.models import CooperationDocument, CooperationChoice, History, Institution, User
 from rest_framework import serializers
 from siskerma.app.serializers.cooperation_file_serializer import CooperationFileSerializer
 from siskerma.app.serializers.history_serializers import HistorySerializer
@@ -52,10 +52,10 @@ class CooperationDocumentSerializer(BaseModelSerializer):
     @atomic
     def create(self, validated_data):
         partner = validated_data.pop('user_set')
-        validated_data['fakultas'] = self.context['worker'].prodi.fakultas
+        validated_data['prodi'] = self.context['worker'].prodi
         document = super().create(validated_data)
         for i in partner:
-            User.objects.create(**i, cooperation_document=document)
+            User.objects.create(cooperation_document=document, **i, )
 
         History.objects.create(document=document)
 
@@ -115,7 +115,7 @@ class CooperationDocumentSerializer(BaseModelSerializer):
         return instance
 
     class Meta:
-        model = CooperationDucument
+        model = CooperationDocument
         exclude = ['number', 'choices_set',]
 
 
@@ -129,13 +129,13 @@ class ListCooperationDocumentSerializer(BaseModelSerializer):
         return f'041033/{obj.get_type_display()}/{obj.created_at.year}/{obj.number}'
 
     class Meta:
-        model = CooperationDucument
+        model = CooperationDocument
         fields = ['id', 'document_number', 'name', 'type_document', 'status_document']
 
 
 class AjukanUlangSerializer(serializers.Serializer):
 
-    def ajukan_ulang(self, obj: CooperationDucument):
+    def ajukan_ulang(self, obj: CooperationDocument):
         obj.status = 1
         obj.step = 1
         obj.save()

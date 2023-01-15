@@ -2,14 +2,14 @@ from siskerma.app.filters.document_filter import DocumentFilter
 from siskerma.app.serializers.history_serializers import HistoryDetailSerializer
 from siskerma.app.views.base_model_viewset import BaseModelViewSet
 from siskerma.app.serializers.cooperation_document_serializers import AjukanUlangSerializer, CooperationDocumentSerializer, ListCooperationDocumentSerializer
-from siskerma.app.models import CooperationDucument
+from siskerma.app.models import CooperationDocument
 from django.db.transaction import atomic
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
 
 class CooperationDocumentViewSet(BaseModelViewSet):
-    queryset = CooperationDucument.objects.all().order_by('created_at')
+    queryset = CooperationDocument.objects.all().order_by('created_at')
     serializer_class = CooperationDocumentSerializer
     filterset_class = DocumentFilter
     search_fields = ['name', 'number',]

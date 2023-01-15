@@ -1,4 +1,4 @@
-from siskerma.app.models import CooperationDucument, History, HistoryDetail
+from siskerma.app.models import CooperationDocument, History, HistoryDetail
 from siskerma.app.serializers.base_models_serializer import BaseModelSerializer
 from rest_framework import serializers
 
@@ -11,7 +11,7 @@ class HistoryDetailSerializer(BaseModelSerializer):
         model = HistoryDetail
         fields = '__all__'
 
-    def validasi_ajuan(self, obj: CooperationDucument, validated_data):
+    def validasi_ajuan(self, obj: CooperationDocument, validated_data):
         if validated_data['status'] == 1:
             obj.status = obj.status + 1
         else:

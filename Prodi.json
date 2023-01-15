@@ -1,0 +1,1 @@
+[{"model": "app.prodi", "pk": "8e05928c-8729-4ac4-a816-ec4a201a4af6", "fields": {"created_at": "2022-12-28T02:45:27.572Z", "updated_at": "2022-12-28T02:45:27.572Z", "created_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5", "updated_by": "0b2ce3fc-fe46-4e6b-bac7-7499c7435ee5", "name": "Prodi A", "is_active": true, "fakultas": "1a7920cf-c32a-4f52-b2c2-803495a8a8a8"}}]

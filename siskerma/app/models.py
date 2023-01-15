@@ -5,10 +5,26 @@ from django.contrib.auth.models import AbstractUser
 from django.core.validators import validate_email
 from django.db import models
 from datetime import datetime
+from django.conf import settings
+
 
 from dateutil.relativedelta import relativedelta
 
+from django.dispatch import receiver
+from django.urls import reverse
+from django_rest_passwordreset.signals import reset_password_token_created
+from django.core.mail import send_mail
+
+
 # Create your models here.
+
+@receiver(reset_password_token_created)
+def password_reset_token_created(sender, instance, reset_password_token, *args, **kwargs):
+
+    email_plaintext_message = "{}?token={}".format(
+        reverse('password_reset:reset-password-request'), reset_password_token.key)
+
+    print(reset_password_token.key)
 
 
 def path_and_rename(instance, filename):
@@ -55,7 +71,7 @@ class User(BaseEntryModel):
     responsible_approval_position = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
     institution = models.ForeignKey(to='Institution', on_delete=models.RESTRICT, null=True)
-    cooperation_document = models.ForeignKey(to='CooperationDucument', on_delete=models.CASCADE, null=True)
+    cooperation_document = models.ForeignKey(to='CooperationDocument', on_delete=models.CASCADE, null=True)
     created_by = models.ForeignKey(
         'Worker', related_name='user_createdby', null=True, on_delete=models.SET_NULL)
     updated_by = models.ForeignKey(
@@ -65,6 +81,9 @@ class User(BaseEntryModel):
 class Role(BaseFieldModel):
     is_active = models.BooleanField(default=True)
     name = models.CharField(max_length=50, unique=True)
+
+    def __str__(self) -> str:
+        return self.name
 
 
 class WorkerRole(BaseEntryModel):
@@ -93,7 +112,7 @@ class CooperationChoice(BaseEntryModel):
     is_active = models.BooleanField(default=True)
 
 
-class CooperationDucument(BaseEntryModel):
+class CooperationDocument(BaseEntryModel):
     TYPE_CHOICE = (
         (1, 'IA'),
         (2, 'MOA'),
@@ -128,7 +147,7 @@ class CooperationDucument(BaseEntryModel):
         'document', 'choice'), related_name='cooperationdocument_set')
     # user = models.ForeignKey(to=User, on_delete=models.RESTRICT)
     files = models.ForeignKey(to='CooperationFile', on_delete=models.CASCADE, null=True)
-    fakultas = models.ForeignKey(to='Fakultas', on_delete=models.CASCADE, null=True)
+    prodi = models.ForeignKey(to='Prodi', on_delete=models.CASCADE, null=True)
 
     def save(self, *args, **kwargs):
         # This means that the model isn't saved to the database yet
@@ -137,25 +156,25 @@ class CooperationDucument(BaseEntryModel):
         if self._state.adding:
             if self.type == 1:  # type IA
                 # Get the maximum display_id value from the database
-                last_id = self.fakultas.last_ai_number
+                last_id = self.prodi.fakultas.last_ai_number
                 if last_id is not None:
-                    self.fakultas.last_ai_number = last_id + 1
-                    self.fakultas.save()
+                    self.prodi.fakultas.last_ai_number = last_id + 1
+                    self.prodi.fakultas.save()
                     number = last_id + 1
             if self.type == 2:  # type MOA
                 # Get the maximum display_id value from the database
-                last_id = self.fakultas.last_moa_number
+                last_id = self.prodi.fakultas.last_moa_number
                 if last_id is not None:
-                    self.fakultas.last_moa_number = last_id + 1
-                    self.fakultas.save()
+                    self.prodi.fakultas.last_moa_number = last_id + 1
+                    self.prodi.fakultas.save()
                     number = last_id + 1
 
             if self.type == 3:  # type MOU
                 # Get the maximum display_id value from the database
-                last_id = self.fakultas.last_mou_number
+                last_id = self.prodi.fakultas.last_mou_number
                 if last_id is not None:
-                    self.fakultas.last_mou_number = last_id + 1
-                    self.fakultas.save()
+                    self.prodi.fakultas.last_mou_number = last_id + 1
+                    self.prodi.fakultas.save()
                     number = last_id + 1
             # aggregate can return None! Check it first.
             # If it isn't none, just use the last ID specified (which should be the greatest) and add one to it
@@ -163,18 +182,18 @@ class CooperationDucument(BaseEntryModel):
             self.number = f"{number:05d}"
             self.expied_date = datetime.now() + relativedelta(months=+6)
 
-        super(CooperationDucument, self).save(*args, **kwargs)
+        super(CooperationDocument, self).save(*args, **kwargs)
 
 
 class CooperationFile(BaseEntryModel):
-    # coopration_document = models.ForeignKey(to=CooperationDucument, on_delete=models.RESTRICT)
+    # coopration_document = models.ForeignKey(to=CooperationDocument, on_delete=models.RESTRICT)
     photo = models.FileField(upload_to=path_and_rename, max_length=255)
     document = models.FileField(upload_to=path_and_rename, max_length=255)
     url = models.URLField()
 
 
 class CooperationDocumentChoice(BaseEntryModel):
-    document = models.ForeignKey(to=CooperationDucument, on_delete=models.CASCADE)
+    document = models.ForeignKey(to=CooperationDocument, on_delete=models.CASCADE)
     choice = models.ForeignKey(to=CooperationChoice, on_delete=models.CASCADE)
 
 
@@ -192,7 +211,7 @@ class Fakultas(BaseEntryModel):
 
 
 class History(BaseEntryModel):
-    document = models.ForeignKey(to=CooperationDucument, on_delete=models.CASCADE)
+    document = models.ForeignKey(to=CooperationDocument, on_delete=models.CASCADE)
     label = models.CharField(max_length=125, default='Pengajuan')
     number = models.IntegerField(default=1)
 
