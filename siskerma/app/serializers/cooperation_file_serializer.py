@@ -11,7 +11,8 @@ class CooperationFileSerializer(serializers.ModelSerializer):
         file = super().create(validated_data)
         doc = CooperationDocument.objects.get(id=doc_id)
         doc.files = file
-        doc.status = 2
+        doc.status = 1
+        doc.step = 1
         doc.save()
 
         return file

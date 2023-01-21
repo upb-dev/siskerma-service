@@ -1,3 +1,4 @@
+from siskerma.app.filters.worker_filters import WorkerFilter
 from siskerma.app.models import Worker
 from siskerma.app.permisson import AdminPermission
 from siskerma.app.serializers.change_password_serializers import ChangePasswordSerializer
@@ -14,6 +15,8 @@ class WorkerViewSet(viewsets.ModelViewSet):
     serializer_class = WorkerSerializer
     filter_backends = [filters.SearchFilter, DjangoFilterBackend, filters.OrderingFilter]
     filterset_fields = ['username', 'address', 'phone', 'email']
+    filterset_class = WorkerFilter
+    search_fields = ['username', 'first_name', 'last_name', 'phone', 'address', 'email']
 
     def get_permissions(self):
         method = self.request.method.lower()

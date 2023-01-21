@@ -14,10 +14,16 @@ class HistoryDetailSerializer(BaseModelSerializer):
     def validasi_ajuan(self, obj: CooperationDocument, validated_data):
         if validated_data['status'] == 1:
             obj.status = obj.status + 1
+            if obj.type == 2:
+                obj.status = 3
+
         else:
-            obj.status = 6
+            obj.status = 5
 
         obj.step = obj.step + 1
+        if obj.type == 2:
+            obj.step = 3
+
         obj.save()
 
         HistoryDetail.objects.create(**validated_data)

@@ -21,10 +21,18 @@ from django.core.mail import send_mail
 @receiver(reset_password_token_created)
 def password_reset_token_created(sender, instance, reset_password_token, *args, **kwargs):
 
-    email_plaintext_message = "{}?token={}".format(
-        reverse('password_reset:reset-password-request'), reset_password_token.key)
+    # email_plaintext_message = "{}?token={}".format(
+    #     reverse('password_reset:reset-password-request'), reset_password_token.key)
 
     print(reset_password_token.key)
+
+    send_mail(
+        'Reset Password Siskerma',
+        f'Token reset : {reset_password_token.key}',
+        settings.EMAIL_HOST_USER,
+        [reset_password_token.user.email],
+        fail_silently=False,
+    )
 
 
 def path_and_rename(instance, filename):
@@ -125,12 +133,12 @@ class CooperationDocument(BaseEntryModel):
     )
 
     STATUS_CHOICE = (
-        (1, 'Draft Pengajuan'),
-        (2, 'Disetujui Oleh Kaprodi'),
-        (3, 'Disetujui OLeh Dekan'),
-        (4, 'Disetujui Oleh Rektor'),
-        (5, 'Draft Kadaluarsa'),
-        (6, 'Ditolak'),
+        (0, 'Draft Pengajuan'),
+        (1, 'Belum Divalidasi'),
+        (2, 'Disetujui Oleh Prodi'),
+        (3, 'Disetujui Oleh Fakultas'),
+        (4, 'Draft Kadaluarsa'),
+        (5, 'Ditolak'),
 
     )
     number = models.CharField(max_length=125)
@@ -142,44 +150,32 @@ class CooperationDocument(BaseEntryModel):
     date_end = models.DateField(null=True, blank=True)
     status = models.IntegerField(choices=STATUS_CHOICE)
     expied_date = models.DateTimeField()
-    step = models.IntegerField(default=1)
+    step = models.IntegerField(default=0)
     choices_set = models.ManyToManyField(to=CooperationChoice, through='CooperationDocumentChoice', through_fields=(
         'document', 'choice'), related_name='cooperationdocument_set')
     # user = models.ForeignKey(to=User, on_delete=models.RESTRICT)
     files = models.ForeignKey(to='CooperationFile', on_delete=models.CASCADE, null=True)
     prodi = models.ForeignKey(to='Prodi', on_delete=models.CASCADE, null=True)
+    parent = models.ForeignKey('self', on_delete=models.RESTRICT, null=True, blank=True)
 
     def save(self, *args, **kwargs):
         # This means that the model isn't saved to the database yet
         last_id = None
         number = None
         if self._state.adding:
-            if self.type == 1:  # type IA
-                # Get the maximum display_id value from the database
-                last_id = self.prodi.fakultas.last_ai_number
-                if last_id is not None:
-                    self.prodi.fakultas.last_ai_number = last_id + 1
-                    self.prodi.fakultas.save()
-                    number = last_id + 1
-            if self.type == 2:  # type MOA
-                # Get the maximum display_id value from the database
-                last_id = self.prodi.fakultas.last_moa_number
-                if last_id is not None:
-                    self.prodi.fakultas.last_moa_number = last_id + 1
-                    self.prodi.fakultas.save()
-                    number = last_id + 1
+            # Get the maximum display_id value from the database
+            last_id = CooperationDocument.objects.all().aggregate(largest=models.Max('number'))['largest']
 
-            if self.type == 3:  # type MOU
-                # Get the maximum display_id value from the database
-                last_id = self.prodi.fakultas.last_mou_number
-                if last_id is not None:
-                    self.prodi.fakultas.last_mou_number = last_id + 1
-                    self.prodi.fakultas.save()
-                    number = last_id + 1
+            # aggregate can return None! Check it first.
+            # If it isn't none, just use the last ID specified (which should be the greatest) and add one to it
+            if last_id is not None:
+                number = int(last_id) + 1
+            else:
+                number = 1
             # aggregate can return None! Check it first.
             # If it isn't none, just use the last ID specified (which should be the greatest) and add one to it
 
-            self.number = f"{number:05d}"
+            self.number = f"{number:06d}"
             self.expied_date = datetime.now() + relativedelta(months=+6)
 
         super(CooperationDocument, self).save(*args, **kwargs)
@@ -205,9 +201,6 @@ class Institution(BaseEntryModel):
 class Fakultas(BaseEntryModel):
     name = models.CharField(max_length=125)
     is_active = models.BooleanField(default=True)
-    last_ai_number = models.IntegerField()
-    last_moa_number = models.IntegerField()
-    last_mou_number = models.IntegerField()
 
 
 class History(BaseEntryModel):
@@ -217,7 +210,8 @@ class History(BaseEntryModel):
 
     def save(self, *args, **kwargs):
         if self._state.adding:
-            last_number = History.objects.all().aggregate(largest=models.Max('number'))['largest']
+            document = CooperationDocument.objects.get(id=self.document.id)
+            last_number = len(document.history_set.all())
 
             if last_number is not None:
                 self.number = last_number + 1

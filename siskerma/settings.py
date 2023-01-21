@@ -225,8 +225,17 @@ MEDIA_URL = '/media/'
 
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST = "siskerma.pelitabangsa.ac.id"
 EMAIL_USE_TLS = True
-EMAIL_PORT = 587
+EMAIL_PORT = 26
 EMAIL_HOST_USER = env('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+
+
+DJANGO_REST_PASSWORDRESET_TOKEN_CONFIG = {
+    "CLASS": "django_rest_passwordreset.tokens.RandomNumberTokenGenerator",
+    "OPTIONS": {
+        "min_number": 1500,
+        "max_number": 9999
+    }
+}

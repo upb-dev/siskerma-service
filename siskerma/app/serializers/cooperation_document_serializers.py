@@ -47,7 +47,7 @@ class CooperationDocumentSerializer(BaseModelSerializer):
 
     def get_document_number(self, obj):
 
-        return f'041033/{obj.get_type_display()}/{obj.created_at.year}/{obj.number}'
+        return f'041072/{obj.get_type_display()}/{obj.created_at.year}/{obj.number}'
 
     @atomic
     def create(self, validated_data):
@@ -55,7 +55,7 @@ class CooperationDocumentSerializer(BaseModelSerializer):
         validated_data['prodi'] = self.context['worker'].prodi
         document = super().create(validated_data)
         for i in partner:
-            User.objects.create(cooperation_document=document, **i, )
+            User.objects.create(cooperation_document=document, **i,)
 
         History.objects.create(document=document)
 
@@ -136,8 +136,8 @@ class ListCooperationDocumentSerializer(BaseModelSerializer):
 class AjukanUlangSerializer(serializers.Serializer):
 
     def ajukan_ulang(self, obj: CooperationDocument):
-        obj.status = 1
-        obj.step = 1
+        obj.status = 0
+        obj.step = 0
         obj.save()
         History.objects.create(document=obj)
 

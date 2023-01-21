@@ -16,9 +16,24 @@ class CooperationDocumentViewSet(BaseModelViewSet):
 
     def get_queryset(self):
         if self.request.user and ('Admin' not in self.request.user.get_role_name):
-            self.queryset = self.queryset.filter(created_by=self.request.user)
+            if self.request.user and ('Rektor' in self.request.user.get_role_name):
+                # if 'validasi' in self.request.query_params:
+                #     self.queryset = self.queryset.filter(type__in=[3])
+                self.queryset = self.queryset
+            if self.request.user and ('Dekan' in self.request.user.get_role_name):
+                self.queryset = self.queryset.filter(prodi__fakultas__name=self.request.user.prodi.fakultas.name)
+                # if 'validasi' in self.request.query_params:
+                #     self.queryset = self.queryset.filter(type__in=[2, 3])
+            if self.request.user and ('Kaprodi' in self.request.user.get_role_name):
+                self.queryset = self.queryset.filter(prodi__name=self.request.user.prodi.name, )
+                # if 'validasi' in self.request.query_params:
+                #     self.queryset = self.queryset.filter(type__in=[1, 2, 3])
+            if self.request.user and ('Dosen' or 'Mahasiswa' in self.request.user.get_role_name):
+                self.queryset = self.queryset.filter(created_by=self.request.user)
+
         if 'is_pribadi' in self.request.query_params:
-            self.queryset = self.queryset.filter(created_by=self.request.user).exclude(status=1)
+            self.queryset = self.queryset.filter(created_by=self.request.user)
+
         return super().get_queryset()
 
     def list(self, request, *args, **kwargs):
