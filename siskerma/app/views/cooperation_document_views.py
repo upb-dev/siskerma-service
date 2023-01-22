@@ -1,7 +1,7 @@
 from siskerma.app.filters.document_filter import DocumentFilter
 from siskerma.app.serializers.history_serializers import HistoryDetailSerializer
 from siskerma.app.views.base_model_viewset import BaseModelViewSet
-from siskerma.app.serializers.cooperation_document_serializers import AjukanUlangSerializer, CooperationDocumentSerializer, ListCooperationDocumentSerializer
+from siskerma.app.serializers.cooperation_document_serializers import AjukanSerializer, AjukanUlangSerializer, CooperationDocumentSerializer, ListCooperationDocumentSerializer
 from siskerma.app.models import CooperationDocument
 from django.db.transaction import atomic
 from rest_framework.decorators import action
@@ -28,7 +28,7 @@ class CooperationDocumentViewSet(BaseModelViewSet):
                 self.queryset = self.queryset.filter(prodi__name=self.request.user.prodi.name, )
                 # if 'validasi' in self.request.query_params:
                 #     self.queryset = self.queryset.filter(type__in=[1, 2, 3])
-            if self.request.user and ('Dosen' or 'Mahasiswa' in self.request.user.get_role_name):
+            if self.request.user and ('Dosen' in self.request.user.get_role_name or 'Mahasiswa' in self.request.user.get_role_name):
                 self.queryset = self.queryset.filter(created_by=self.request.user)
 
         if 'is_pribadi' in self.request.query_params:
@@ -61,5 +61,14 @@ class CooperationDocumentViewSet(BaseModelViewSet):
 
         serializer = AjukanUlangSerializer(context=self.get_serializer_context())
         serializer.ajukan_ulang(obj=data)
+
+        return Response()
+
+    @atomic
+    @action(detail=True, methods=['POST'], url_path='ajukan')
+    def ajukan(self, request, *args, **kwargs):
+        data = self.get_object()
+        serializer = AjukanSerializer(context=self.get_serializer_context())
+        serializer.ajukan(instance=data)
 
         return Response()

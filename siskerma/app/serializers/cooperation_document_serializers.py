@@ -40,31 +40,33 @@ class CooperationDocumentSerializer(BaseModelSerializer):
     kerjasama = serializers.PrimaryKeyRelatedField(queryset=CooperationChoice.objects.all(
     ), write_only=True, allow_empty=True, many=True, source='choices_set')
     bentuk_kerjasama = CooperationChoiceSerializers(many=True, read_only=True, source='choices_set')
-    partner = UserSerializers(source='user_set', many=True)
+    partner = serializers.SerializerMethodField()
     files = CooperationFileSerializer(read_only=True)
     history = HistorySerializer(many=True, read_only=True, source='history_set')
-    # partner_data = UserSerializers(write_only=True, many=True)
+    partner_data = UserSerializers(write_only=True, many=True)
+
+    def get_partner(self, instance: CooperationDocument):
+        active_partner = instance.user_set.filter(is_active=True)
+        return UserSerializers(active_partner, many=True).data
 
     def get_document_number(self, obj):
 
-        return f'041072/{obj.get_type_display()}/{obj.created_at.year}/{obj.number}'
+        return f'041072/{obj.get_type_display()}/{obj.created_at.year}/{obj.number:06d}'
 
     @atomic
     def create(self, validated_data):
-        partner = validated_data.pop('user_set')
+        partner = validated_data.pop('partner_data')
         validated_data['prodi'] = self.context['worker'].prodi
         document = super().create(validated_data)
         for i in partner:
             User.objects.create(cooperation_document=document, **i,)
-
-        History.objects.create(document=document)
 
         return document
 
     @atomic
     def update(self, instance, validated_data):
         request = self.context.get('request', None)
-        partners = validated_data.pop('user_set')
+        partners = validated_data.pop('partner_data')
         instance = super().update(instance, validated_data)
 
         user_ids = []
@@ -95,7 +97,7 @@ class CooperationDocumentSerializer(BaseModelSerializer):
                     i['created_by'] = request.user
 
                     try:
-                        user = User.objects.create(coopertaion_document=instance, **i)
+                        user = User.objects.create(cooperation_document=instance, **i)
                     except Exception as e:
                         raise ValidationError({'detail': e})
                 user_ids.append(user.id)
@@ -126,7 +128,7 @@ class ListCooperationDocumentSerializer(BaseModelSerializer):
 
     def get_document_number(self, obj):
 
-        return f'041033/{obj.get_type_display()}/{obj.created_at.year}/{obj.number}'
+        return f'041072/{obj.get_type_display()}/{obj.created_at.year}/{obj.number:06d}'
 
     class Meta:
         model = CooperationDocument
@@ -139,7 +141,24 @@ class AjukanUlangSerializer(serializers.Serializer):
         obj.status = 0
         obj.step = 0
         obj.save()
-        History.objects.create(document=obj)
 
         self.instance = obj
+        return self.instance
+
+
+class AjukanSerializer(serializers.Serializer):
+    def ajukan(self, instance: CooperationDocument):
+
+        instance.status = 1
+
+        if instance.type == 2 or instance.type == 3:
+
+            instance.step = 2
+        else:
+            instance.step = 1
+
+        instance.save()
+        History.objects.create(document=instance)
+
+        self.instance = instance
         return self.instance

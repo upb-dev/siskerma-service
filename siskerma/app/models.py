@@ -136,12 +136,12 @@ class CooperationDocument(BaseEntryModel):
         (0, 'Draft Pengajuan'),
         (1, 'Belum Divalidasi'),
         (2, 'Disetujui Oleh Prodi'),
-        (3, 'Disetujui Oleh Fakultas'),
+        (3, 'Disetujui Oleh Universitas'),
         (4, 'Draft Kadaluarsa'),
         (5, 'Ditolak'),
 
     )
-    number = models.CharField(max_length=125)
+    number = models.IntegerField()
     name = models.CharField(max_length=125)
     type = models.IntegerField(choices=TYPE_CHOICE)
     period = models.IntegerField(choices=PERIOD_CHOICE)
@@ -172,10 +172,8 @@ class CooperationDocument(BaseEntryModel):
                 number = int(last_id) + 1
             else:
                 number = 1
-            # aggregate can return None! Check it first.
-            # If it isn't none, just use the last ID specified (which should be the greatest) and add one to it
 
-            self.number = f"{number:06d}"
+            self.number = number
             self.expied_date = datetime.now() + relativedelta(months=+6)
 
         super(CooperationDocument, self).save(*args, **kwargs)

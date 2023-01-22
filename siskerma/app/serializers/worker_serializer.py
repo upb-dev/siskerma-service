@@ -9,7 +9,7 @@ class WorkerSerializer(serializers.ModelSerializer):
     role = serializers.PrimaryKeyRelatedField(queryset=Role.objects.all(
     ), many=True, write_only=True, source='roles', required=False)
     roles = RoleSerializer(many=True, read_only=True)
-    password = serializers.CharField(write_only=True, required=False)
+    password = serializers.CharField(write_only=True, required=False,)
     prodi_id = serializers.PrimaryKeyRelatedField(
         queryset=Prodi.objects.all(), write_only=True, source='prodi', required=False)
     prodi = ProdiSerializer(read_only=True)
@@ -21,3 +21,7 @@ class WorkerSerializer(serializers.ModelSerializer):
     def validate_password(self, attrs):
         from django.contrib.auth.hashers import make_password
         return make_password(attrs)
+
+    def update(self, instance: Worker, validated_data):
+        validated_data['password'] = instance.password
+        return super().update(instance, validated_data)
