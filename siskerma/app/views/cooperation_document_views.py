@@ -1,7 +1,7 @@
 from siskerma.app.filters.document_filter import DocumentFilter
 from siskerma.app.serializers.history_serializers import HistoryDetailSerializer
 from siskerma.app.views.base_model_viewset import BaseModelViewSet
-from siskerma.app.serializers.cooperation_document_serializers import AjukanSerializer, AjukanUlangSerializer, CooperationDocumentSerializer, ListCooperationDocumentSerializer
+from siskerma.app.serializers.cooperation_document_serializers import AjukanSerializer, AjukanUlangSerializer, CooperationDocumentSerializer, ListCooperationDocumentSerializer, SetReferenceSerializer
 from siskerma.app.models import CooperationDocument
 from django.db.transaction import atomic
 from rest_framework.decorators import action
@@ -33,6 +33,9 @@ class CooperationDocumentViewSet(BaseModelViewSet):
 
         if 'is_pribadi' in self.request.query_params:
             self.queryset = self.queryset.filter(created_by=self.request.user)
+
+        if 'referensi' in self.request.query_params:
+            self.queryset = self.queryset.filter(step=3, parent__isnull=True).exclude(type=3)
 
         return super().get_queryset()
 
@@ -70,5 +73,15 @@ class CooperationDocumentViewSet(BaseModelViewSet):
         data = self.get_object()
         serializer = AjukanSerializer(context=self.get_serializer_context())
         serializer.ajukan(instance=data)
+
+        return Response()
+
+    @atomic
+    @action(detail=True, methods=['POST'], url_path='set-reference')
+    def set_reference(self, request, *args, **kwargs):
+        data = self.get_object()
+        serializer = SetReferenceSerializer(data=self.request.data, context=self.get_serializer_context())
+        serializer.is_valid(raise_exception=True)
+        serializer.set_referenc(instance=data, validated_data=serializer.validated_data)
 
         return Response()

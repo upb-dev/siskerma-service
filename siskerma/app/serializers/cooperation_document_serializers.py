@@ -162,3 +162,16 @@ class AjukanSerializer(serializers.Serializer):
 
         self.instance = instance
         return self.instance
+
+
+class SetReferenceSerializer(serializers.Serializer):
+    id = serializers.UUIDField()
+
+    def set_referenc(self, validated_data, instance: CooperationDocument):
+        doc: CooperationDocument = CooperationDocument.objects.get(id=validated_data['id'])
+        instance.parent = doc
+
+        instance.save()
+
+        self.instance = instance
+        return self.instance
