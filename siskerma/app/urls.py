@@ -1,6 +1,7 @@
 from django.urls import re_path, include, path
 from rest_framework import routers
 from siskerma.app.views.cooperation_file_views import CooperationFileVIewSet
+from siskerma.app.views.dashboard_views import DashBoardViewSet
 
 from siskerma.app.views.fakultas_views import FakultasViewSet
 from siskerma.app.views.role_views import RoleViewSet
@@ -26,6 +27,7 @@ router.register('prodi', ProdiViewSet)
 router.register('fakultas', FakultasViewSet)
 router.register('user', UserViewSet)
 router.register('file', CooperationFileVIewSet)
+router.register('dashboard', DashBoardViewSet)
 
 
 urlpatterns = [
