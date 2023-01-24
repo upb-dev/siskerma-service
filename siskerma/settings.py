@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'django_filters',
     'rest_framework_simplejwt',
     'django_rest_passwordreset',
+    'gdstorage',
 ]
 
 MIDDLEWARE = [
@@ -239,3 +240,6 @@ DJANGO_REST_PASSWORDRESET_TOKEN_CONFIG = {
         "max_number": 9999
     }
 }
+
+
+GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = 'cred/siskerma-upb.json'

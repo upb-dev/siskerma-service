@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "siskerma-upb",
+  "private_key_id": "9e0b20877d967cb93c0271f3970c478c661a850c",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDhL8Vt7MFQA2Zg\nab8Eaex7nx1syS2Ivqf+dXkfI2BaTGEdTtG1Oq/YMQKhsz5Mwi1ePNwdDOI4oCsS\n0wJ3GDwabdcP5bm/rR82XbzwN45IIdEHn1yLVG21ht5v+FUK3qTQ0bymIzadnhKe\nRdqdbabZOlDc5KJrT98cnQJLehSH1b5w1iq4yabxVsH6tU9zAFVm3wNwjF6wd7tr\nWVJ56xq5L/pVWBVeopU4AFGR2lBe2EG+hRJDPD9XtX4tsY2presv8tDFT7EVnPFv\nAxXw2blBtQv7iFDxeyH/D5eFHYFS6w8GIFP+k/LHCumx79qOMZwXvf1oll/RzBuT\nVY0WinutAgMBAAECggEAApA953flJarh1zg7Whd1/1x3sNWW2Y8cD/fYrciEEAfj\n27oAn3DGo2FZcsUWcQUnD/Y4f9jCv+f43Y4krmQXYqo8VlxXeAcs2AkkpB82lPuH\nkUl/FVn1pSk4iB56VcH9+9LFAQ1dEYz4Kf0vFV3NoxYe6TwHQ+crackflDbhTw0g\nvLDT5l3Nk47GjkVEEldmf5E1npocTha9H9/1UhrLWYIV3rDTEY+AY+y+BgmATYoI\n0Kizi/lh18TvYhg40dnCygfomGTuqf7sluzzv6CtcuZu3T0Er+WldPRXResibOli\npE+pVof1+0eBEc4UAKuDEpyaHNQjv3CigTDRtQqCiQKBgQDwaViT1vehrFQpMTdr\ntNx9mZJT1r5MQSFLeB5ygPWUvVBRMTjNL2kMMCapVof3psFFcEnvvIfuIlizlBOG\n2JzIG68U8fgtdQKZubGrBRiURGcpM50dlLshIpCiDqq4Gv4DFhJtnjV+hkdeksHo\nGZfOsFk83N5/j6gN9CMpcU87qQKBgQDvybP6+mwtztT0Wv46EwrmcrDNPoTt352I\nDRMJrUHRttJfHeEEE4Jd1mAVQSnpLz/rt41mnRn74tPcPpSRdHFbbPeZVsW6YgkH\nEgDOP/gochksr6Fh4wszhpdqUOOYdaLXXqodazIHvPfsmtkewWzI6vH2mNe12mpY\n7rYjhq+iZQKBgBbKlegmGAHOuYfSL6PZWJHbrkCeehn2jrZ9470NNrrsG6Im3XCu\nTvIl2nRxTKCQwX/Yvlmo8OYFgY08u4EsJejenwGIUvPURPPX490HtaXQukrwprN4\nNylUAowqgcrEXFJklEiqF/4vsrJnjVR4oKiqlTss4TcMomz4OSEjqdRJAoGAbY5T\nnA0Elh1U8NwOIYyHw2iNXQj+hQxRFlMa6qXtV5rXHTwyjcE4JBWJSsy+EFtVMiZo\nBYUr1Qj60TsKeDaigCoWKkoaByE5jLBuC83wXNJcrC0GaAnrGTyaO6n/gq3km9AV\nm2FZt21gPQs2vjWTtWya5pdInz7OrhlKwIqN/n0CgYEA7rdV5VJyHTVsts9sNyqd\nbLn2kzABg2by/PGZKCimuXXjccfbYmIjTuKLHtjJbAmtnV2qU13m09SHLCf08TVD\ncumrkPbOZUZYqTlqS3ft2f6TBtPqUvKRDo6DmlZOVlicwJby1jvIVFgS7MvUP4D2\ndUgWQ0i9YNrKrqYwkNHEJ5U=\n-----END PRIVATE KEY-----\n",
+  "client_email": "service-account@siskerma-upb.iam.gserviceaccount.com",
+  "client_id": "105139885397133093634",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/service-account%40siskerma-upb.iam.gserviceaccount.com"
+}

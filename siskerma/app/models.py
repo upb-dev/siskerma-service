@@ -15,6 +15,11 @@ from django.urls import reverse
 from django_rest_passwordreset.signals import reset_password_token_created
 from django.core.mail import send_mail
 
+from gdstorage.storage import GoogleDriveStorage
+
+# Define Google Drive Storage
+gd_storage = GoogleDriveStorage()
+
 
 # Create your models here.
 
@@ -181,8 +186,8 @@ class CooperationDocument(BaseEntryModel):
 
 class CooperationFile(BaseEntryModel):
     # coopration_document = models.ForeignKey(to=CooperationDocument, on_delete=models.RESTRICT)
-    photo = models.FileField(upload_to=path_and_rename, max_length=255)
-    document = models.FileField(upload_to=path_and_rename, max_length=255)
+    photo = models.FileField(upload_to=path_and_rename, max_length=255, storage=gd_storage)
+    document = models.FileField(upload_to=path_and_rename, max_length=255, storage=gd_storage)
     url = models.URLField()
 
 
