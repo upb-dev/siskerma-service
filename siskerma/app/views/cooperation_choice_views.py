@@ -5,7 +5,7 @@ from siskerma.app.models import CooperationChoice
 
 
 class CooperationChoiceViewSet(BaseModelViewSet):
-    queryset = CooperationChoice.objects.all().order_by('created_at')
+    queryset = CooperationChoice.objects.all().order_by('name')
     serializer_class = CooperationChoiceSerializer
 
     def get_permissions(self):
