@@ -11,11 +11,10 @@ from django.conf import settings
 from dateutil.relativedelta import relativedelta
 
 from django.dispatch import receiver
-from django.urls import reverse
 from django_rest_passwordreset.signals import reset_password_token_created
 from django.core.mail import send_mail
 
-from gdstorage.storage import GoogleDriveStorage
+from siskerma.app.config.google_drive import GoogleDriveStorage
 
 # Define Google Drive Storage
 gd_storage = GoogleDriveStorage()
@@ -118,6 +117,25 @@ class Worker(AbstractUser):
     @property
     def get_role_name(self):
         return list(self.roles.all().values_list('name', flat=True))
+
+
+class WorkerFcmToken(BaseEntryModel):
+    token = models.TextField()
+    device_id = models.CharField(max_length=255)
+    device_name = models.CharField(max_length=255)
+    user = models.ForeignKey(Worker, on_delete=models.CASCADE)
+
+
+class TemplateDocument(BaseEntryModel):
+    TYPE_CHOICE = (
+        (1, 'IA'),
+        (2, 'MOA'),
+        (3, 'MOU'),
+        (4, 'DLL')
+    )
+    type = models.IntegerField(choices=TYPE_CHOICE)
+    name = models.CharField(max_length=125)
+    file = models.FileField(upload_to=path_and_rename, max_length=125, storage=gd_storage, null=True)
 
 
 class CooperationChoice(BaseEntryModel):
