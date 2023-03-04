@@ -35,7 +35,7 @@ class CooperationDocumentViewSet(BaseModelViewSet):
             self.queryset = self.queryset.filter(created_by=self.request.user)
 
         if 'referensi' in self.request.query_params:
-            self.queryset = self.queryset.filter(step=3, parent__isnull=True).exclude(type=3)
+            self.queryset = self.queryset.filter(parent__isnull=True).exclude(type=3)
 
         return super().get_queryset()
 

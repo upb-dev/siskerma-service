@@ -119,23 +119,23 @@ class Worker(AbstractUser):
         return list(self.roles.all().values_list('name', flat=True))
 
 
-class WorkerFcmToken(BaseEntryModel):
-    token = models.TextField()
-    device_id = models.CharField(max_length=255)
-    device_name = models.CharField(max_length=255)
-    user = models.ForeignKey(Worker, on_delete=models.CASCADE)
+# class WorkerFcmToken(BaseEntryModel):
+    # token = models.TextField()
+    # device_id = models.CharField(max_length=255)
+    # device_name = models.CharField(max_length=255)
+    # user = models.ForeignKey(Worker, on_delete=models.CASCADE)
 
 
-class TemplateDocument(BaseEntryModel):
-    TYPE_CHOICE = (
-        (1, 'IA'),
-        (2, 'MOA'),
-        (3, 'MOU'),
-        (4, 'DLL')
-    )
-    type = models.IntegerField(choices=TYPE_CHOICE)
-    name = models.CharField(max_length=125)
-    file = models.FileField(upload_to=path_and_rename, max_length=125, storage=gd_storage, null=True)
+# class TemplateDocument(BaseEntryModel):
+#     TYPE_CHOICE = (
+#         (1, 'IA'),
+#         (2, 'MOA'),
+#         (3, 'MOU'),
+#         (4, 'DLL')
+#     )
+#     type = models.IntegerField(choices=TYPE_CHOICE)
+#     name = models.CharField(max_length=125)
+#     file = models.FileField(upload_to=path_and_rename, max_length=125, storage=gd_storage, null=True)
 
 
 class CooperationChoice(BaseEntryModel):
@@ -159,9 +159,10 @@ class CooperationDocument(BaseEntryModel):
         (0, 'Draft Pengajuan'),
         (1, 'Belum Divalidasi'),
         (2, 'Disetujui Oleh Prodi'),
-        (3, 'Disetujui Oleh Universitas'),
-        (4, 'Draft Kadaluarsa'),
-        (5, 'Ditolak'),
+        (3, 'Disetujui Oleh Fakultas'),
+        (4, 'Disetujui Oleh Universitas'),
+        (5, 'Draft Kadaluarsa'),
+        (6, 'Ditolak'),
 
     )
     number = models.IntegerField()
@@ -173,11 +174,12 @@ class CooperationDocument(BaseEntryModel):
     date_end = models.DateField(null=True, blank=True)
     status = models.IntegerField(choices=STATUS_CHOICE)
     expied_date = models.DateTimeField()
-    step = models.IntegerField(default=0)
+    # step = models.IntegerField(default=0)
     choices_set = models.ManyToManyField(to=CooperationChoice, through='CooperationDocumentChoice', through_fields=(
         'document', 'choice'), related_name='cooperationdocument_set')
     # user = models.ForeignKey(to=User, on_delete=models.RESTRICT)
     files = models.ForeignKey(to='CooperationFile', on_delete=models.CASCADE, null=True)
+    evidence = models.ForeignKey(to='CooperationEvidence', on_delete=models.CASCADE, null=True)
     prodi = models.ForeignKey(to='Prodi', on_delete=models.CASCADE, null=True)
     parent = models.ForeignKey('self', on_delete=models.RESTRICT, null=True, blank=True)
 
@@ -204,8 +206,11 @@ class CooperationDocument(BaseEntryModel):
 
 class CooperationFile(BaseEntryModel):
     # coopration_document = models.ForeignKey(to=CooperationDocument, on_delete=models.RESTRICT)
-    photo = models.FileField(upload_to=path_and_rename, max_length=255, storage=gd_storage)
     document = models.FileField(upload_to=path_and_rename, max_length=255, storage=gd_storage)
+
+
+class CooperationEvidence(BaseEntryModel):
+    photo = models.FileField(upload_to=path_and_rename, max_length=255, storage=gd_storage)
     url = models.URLField()
 
 

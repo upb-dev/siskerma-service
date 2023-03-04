@@ -1,5 +1,6 @@
 from django.urls import re_path, include, path
 from rest_framework import routers
+from siskerma.app.views.cooperation_evidence_views import CooperationEvidenceViewSet
 from siskerma.app.views.cooperation_file_views import CooperationFileVIewSet
 from siskerma.app.views.dashboard_views import DashBoardViewSet
 
@@ -27,6 +28,8 @@ router.register('prodi', ProdiViewSet)
 router.register('fakultas', FakultasViewSet)
 router.register('user', UserViewSet)
 router.register('file', CooperationFileVIewSet)
+router.register('evidence', CooperationEvidenceViewSet)
+
 router.register('dashboard', DashBoardViewSet)
 
 

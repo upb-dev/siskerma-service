@@ -6,4 +6,4 @@ class FileFIlter(django_filters.FilterSet):
 
     class Meta:
         model = CooperationFile
-        exclude = ['photo', 'document']
+        exclude = ['document']

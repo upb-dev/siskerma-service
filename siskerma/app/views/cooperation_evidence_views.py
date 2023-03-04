@@ -1,13 +1,15 @@
-from siskerma.app.filters.file_filter import FileFIlter
-from siskerma.app.models import CooperationFile
-from siskerma.app.serializers.cooperation_file_serializer import CooperationFileSerializer
-from siskerma.app.views.base_model_viewset import BaseModelViewSet
 from django.db.transaction import atomic
 
+from siskerma.app.filters.file_filter import FileFIlter
+from siskerma.app.models import CooperationEvidence
+from siskerma.app.serializers.cooperation_evidence_serializer import \
+    CooperationEvidenceSerializer
+from siskerma.app.views.base_model_viewset import BaseModelViewSet
 
-class CooperationFileVIewSet(BaseModelViewSet):
-    queryset = CooperationFile.objects.all()
-    serializer_class = CooperationFileSerializer
+
+class CooperationEvidenceViewSet(BaseModelViewSet):
+    queryset = CooperationEvidence.objects.all()
+    serializer_class = CooperationEvidenceSerializer
     filterset_class = FileFIlter
 
     @atomic

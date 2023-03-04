@@ -1,6 +1,7 @@
 from siskerma.app.serializers.base_models_serializer import BaseModelSerializer
 from siskerma.app.models import CooperationDocument, CooperationChoice, History, Institution, User
 from rest_framework import serializers
+from siskerma.app.serializers.cooperation_evidence_serializer import CooperationEvidenceSerializer
 from siskerma.app.serializers.cooperation_file_serializer import CooperationFileSerializer
 from siskerma.app.serializers.history_serializers import HistorySerializer
 
@@ -42,6 +43,7 @@ class CooperationDocumentSerializer(BaseModelSerializer):
     bentuk_kerjasama = CooperationChoiceSerializers(many=True, read_only=True, source='choices_set')
     partner = serializers.SerializerMethodField()
     files = CooperationFileSerializer(read_only=True)
+    evidence = CooperationEvidenceSerializer(read_only=True)
     history = HistorySerializer(many=True, read_only=True, source='history_set')
     partner_data = UserSerializers(write_only=True, many=True)
 
@@ -139,7 +141,7 @@ class AjukanUlangSerializer(serializers.Serializer):
 
     def ajukan_ulang(self, obj: CooperationDocument):
         obj.status = 0
-        obj.step = 0
+        # obj.step = 0
         obj.save()
 
         self.instance = obj
@@ -149,13 +151,13 @@ class AjukanUlangSerializer(serializers.Serializer):
 class AjukanSerializer(serializers.Serializer):
     def ajukan(self, instance: CooperationDocument):
 
-        instance.status = 1
+        instance.status = 1  # status 1 => belom divalidasi
 
-        if instance.type == 2 or instance.type == 3:
+        # if instance.type == 2 or instance.type == 3:
 
-            instance.step = 2
-        else:
-            instance.step = 1
+        #     instance.step = 3  # => step 3 =>> persetujuan fakultas
+        # else:
+        instance.step = 1  # persetujuan prodi =>> untuk IA
 
         instance.save()
         History.objects.create(document=instance)

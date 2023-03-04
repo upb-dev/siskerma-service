@@ -13,18 +13,23 @@ class HistoryDetailSerializer(BaseModelSerializer):
 
     def validasi_ajuan(self, obj: CooperationDocument, validated_data):
         if validated_data['status'] == 1:
-            if obj.type == 2 or obj.type == 3:
+            if obj.type == 2 and obj.status == 0:
                 obj.status = 3
+            elif obj.type == 3 and obj.status == 0:
+                obj.status = 4
             else:
                 obj.status = obj.status + 1
 
         else:
-            obj.status = 5
+            obj.status = 6  # di tolak
 
-        if obj.type == 2 or obj.type == 3:
-            obj.step = 3
-        else:
-            obj.step = obj.step + 1
+        # if obj.type == 2 or obj.type == 3:
+        #     obj.step = 4
+        # else:
+        #     obj.step = obj.step + 1
+
+        #  step 0 && status 0 => draft
+        # statu 1 => belum divalidasi
 
         obj.save()
 
