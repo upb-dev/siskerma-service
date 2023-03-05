@@ -1,3 +1,5 @@
+from django.utils.timezone import now
+from django.db.models import Max
 import os
 import uuid
 
@@ -143,6 +145,15 @@ class CooperationChoice(BaseEntryModel):
     is_active = models.BooleanField(default=True)
 
 
+def next_number():
+    data = CooperationDocument._base_manager.filter(
+        created_at__year=now().year
+    ).aggregate(
+        max_number=Max('number')
+    )['max_number'] or 0
+    return data + 1
+
+
 class CooperationDocument(BaseEntryModel):
     TYPE_CHOICE = (
         (1, 'IA'),
@@ -165,7 +176,7 @@ class CooperationDocument(BaseEntryModel):
         (6, 'Ditolak'),
 
     )
-    number = models.IntegerField()
+    number = models.IntegerField(default=next_number)
     name = models.CharField(max_length=125)
     type = models.IntegerField(choices=TYPE_CHOICE)
     period = models.IntegerField(choices=PERIOD_CHOICE)
@@ -185,20 +196,20 @@ class CooperationDocument(BaseEntryModel):
 
     def save(self, *args, **kwargs):
         # This means that the model isn't saved to the database yet
-        last_id = None
-        number = None
+        # last_id = None
+        # number = None
         if self._state.adding:
             # Get the maximum display_id value from the database
-            last_id = CooperationDocument.objects.all().aggregate(largest=models.Max('number'))['largest']
+            # last_id = CooperationDocument.objects.all().aggregate(largest=models.Max('number'))['largest']
 
             # aggregate can return None! Check it first.
             # If it isn't none, just use the last ID specified (which should be the greatest) and add one to it
-            if last_id is not None:
-                number = int(last_id) + 1
-            else:
-                number = 1
+            # if last_id is not None:
+            #     number = int(last_id) + 1
+            # else:
+            #     number = 1
 
-            self.number = number
+            # self.number = number
             self.expied_date = datetime.now() + relativedelta(months=+6)
 
         super(CooperationDocument, self).save(*args, **kwargs)
