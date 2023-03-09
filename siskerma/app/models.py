@@ -177,6 +177,7 @@ class CooperationDocument(BaseEntryModel):
 
     )
     number = models.IntegerField(default=next_number)
+    document_number = models.CharField(null=True, max_length=50)
     name = models.CharField(max_length=125)
     type = models.IntegerField(choices=TYPE_CHOICE)
     period = models.IntegerField(choices=PERIOD_CHOICE)
@@ -199,6 +200,7 @@ class CooperationDocument(BaseEntryModel):
         # last_id = None
         # number = None
         if self._state.adding:
+            self.document_number = f'041072/{self.get_type_display()}/{datetime.now().year}/{self.number:06d}'
             # Get the maximum display_id value from the database
             # last_id = CooperationDocument.objects.all().aggregate(largest=models.Max('number'))['largest']
 

@@ -10,8 +10,8 @@ class DocumentFilter(django_filters.FilterSet):
     lembaga = ListFilter(field_name='user__institution__id', distinct=True)
     # unfinish = django_filters.BooleanFilter(field_name='evidence', lookup_expr='isnull')
     finish = django_filters.BooleanFilter(field_name='evidence', lookup_expr='isnull', exclude=True)
-    end_data = django_filters.DateTimeFilter(field_name='end_date', lookup_expr='lte')
-    start_data = django_filters.DateTimeFilter(field_name='end_date', lookup_expr='gte')
+    # end_data = django_filters.DateTimeFilter(field_name='end_date', lookup_expr='lte')
+    # start_data = django_filters.DateTimeFilter(field_name='end_date', lookup_expr='gte')
 
     class Meta:
         model = CooperationDocument

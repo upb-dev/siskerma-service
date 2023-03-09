@@ -7,6 +7,9 @@ from django.db.transaction import atomic
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
+from dateutil.relativedelta import relativedelta
+from datetime import datetime
+
 
 class CooperationDocumentViewSet(BaseModelViewSet):
     queryset = CooperationDocument.objects.all().order_by('created_at')
@@ -36,6 +39,14 @@ class CooperationDocumentViewSet(BaseModelViewSet):
 
         if 'referensi' in self.request.query_params:
             self.queryset = self.queryset.filter(parent__isnull=True).exclude(type=3)
+
+        if 'periode' in self.request.query_params:
+            if self.request.query_params['periode'] == '1':
+                self.queryset = self.queryset.filter(end_date__gte=datetime.now(
+                ), end_date__lte=datetime.now() + relativedelta(months=+1))
+            if self.request.query_params['periode'] == '2':
+                self.queryset = self.queryset.filter(end_date__gte=datetime.now(
+                ), end_date__lte=datetime.now() + relativedelta(months=+2))
 
         return super().get_queryset()
 

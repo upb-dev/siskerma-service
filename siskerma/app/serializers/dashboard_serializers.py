@@ -21,7 +21,10 @@ def get_query_params(self, instance):
 
     if self.context['request'].query_params.get('created_at__lte') is not None:
         filter_set['created_at__lte'] = convert_date(self.context['request'].query_params.get('created_at__lte'))
-
+    if self.context['request'].query_params.get('prodi') is not None:
+        filter_set['prodi__id'] = self.context['request'].query_params.get('prodi')
+    if self.context['request'].query_params.get('fakultas') is not None:
+        filter_set['prodi__fakultas__id'] = self.context['request'].query_params.get('fakultas')
     return filter_set
 
 
@@ -70,6 +73,7 @@ class DashboardSerializer(serializers.Serializer):
     fakultas_data = serializers.SerializerMethodField()
     prodi_data = serializers.SerializerMethodField()
     headers = serializers.SerializerMethodField()
+    percentage = serializers.SerializerMethodField()
 
     def get_choice_data(self, obj):
         choice_data = CooperationChoice.objects.all()
@@ -85,6 +89,14 @@ class DashboardSerializer(serializers.Serializer):
         prodi = Prodi.objects.all()
         data = ProdiDataSerializer(instance=prodi, many=True)
         return data.data
+
+    def get_percentage(self, obj):
+        prodi = Prodi.objects.all()
+        data = CooperationDocument.objects.values('prodi_id')
+        li = []
+        [li.append(x) for x in data if x not in li]
+        percentage = round((len(li) / len(prodi) * 100), 2)
+        return percentage
 
     def get_headers(self, instance):
         filter_set = get_query_params(self, instance)

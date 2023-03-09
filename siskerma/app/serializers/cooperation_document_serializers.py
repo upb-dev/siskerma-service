@@ -32,7 +32,7 @@ class UserSerializers(BaseModelSerializer):
 
 
 class CooperationDocumentSerializer(BaseModelSerializer):
-    document_number = serializers.SerializerMethodField()
+    # document_number = serializers.SerializerMethodField()
     type_document = serializers.ReadOnlyField(read_only=True, source='get_type_display')
     period_document = serializers.ReadOnlyField(read_only=True, source='get_period_display')
     status_document = serializers.ReadOnlyField(read_only=True, source='get_status_display')
@@ -51,9 +51,9 @@ class CooperationDocumentSerializer(BaseModelSerializer):
         active_partner = instance.user_set.filter(is_active=True)
         return UserSerializers(active_partner, many=True).data
 
-    def get_document_number(self, obj):
+    # def get_document_number(self, obj):
 
-        return f'041072/{obj.get_type_display()}/{obj.created_at.year}/{obj.number:06d}'
+    #     return f'041072/{obj.get_type_display()}/{obj.created_at.year}/{obj.number:06d}'
 
     @atomic
     def create(self, validated_data):
