@@ -96,3 +96,14 @@ class CooperationDocumentViewSet(BaseModelViewSet):
         serializer.set_referenc(instance=data, validated_data=serializer.validated_data)
 
         return Response()
+
+    @atomic
+    @action(detail=False, methods=['GET'], url_path='check-expired')
+    def check_expired(self, request, *args, **kwargs):
+        data = CooperationDocument.objects.filter(status=0, expied_date__lte=datetime.now())
+
+        for i in data:
+            i.status = 5
+            i.save()
+
+        return Response()

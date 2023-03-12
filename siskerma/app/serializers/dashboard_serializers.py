@@ -47,8 +47,9 @@ class FakultasDataSerializer(serializers.ModelSerializer):
 
     def get_count(self, instance):
         document_data = CooperationDocument.objects.filter(prodi__fakultas=instance, status=3)
+        all_data = CooperationDocument.objects.filter(status=3)
 
-        return document_data.distinct().count()
+        return (document_data.distinct().count() / all_data.distinct().count()) * 100
 
     class Meta:
         model = Fakultas
