@@ -124,13 +124,13 @@ class CooperationDocumentSerializer(BaseModelSerializer):
 
 
 class ListCooperationDocumentSerializer(BaseModelSerializer):
-    document_number = serializers.SerializerMethodField()
+    # document_number = serializers.SerializerMethodField()
     type_document = serializers.ReadOnlyField(read_only=True, source='get_type_display')
     status_document = serializers.ReadOnlyField(read_only=True, source='get_status_display')
 
-    def get_document_number(self, obj):
+    # def get_document_number(self, obj):
 
-        return f'041072/{obj.get_type_display()}/{obj.created_at.year}/{obj.number:06d}'
+    #     return f'041072/{obj.get_type_display()}/{obj.created_at.year}/{obj.number:06d}'
 
     class Meta:
         model = CooperationDocument
