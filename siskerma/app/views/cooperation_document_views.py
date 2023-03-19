@@ -1,21 +1,26 @@
-from siskerma.app.filters.document_filter import DocumentFilter
-from siskerma.app.serializers.history_serializers import HistoryDetailSerializer
-from siskerma.app.views.base_model_viewset import BaseModelViewSet
-from siskerma.app.serializers.cooperation_document_serializers import AjukanSerializer, AjukanUlangSerializer, CooperationDocumentSerializer, ListCooperationDocumentSerializer, SetReferenceSerializer
-from siskerma.app.models import CooperationDocument
+from datetime import datetime
+
+from dateutil.relativedelta import relativedelta
 from django.db.transaction import atomic
+from django.http import HttpResponse
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from dateutil.relativedelta import relativedelta
-from datetime import datetime
+from siskerma.app.filters.document_filter import DocumentFilter
+from siskerma.app.models import CooperationDocument
+from siskerma.app.serializers.cooperation_document_serializers import (
+    AjukanSerializer, AjukanUlangSerializer, CooperationDocumentSerializer,
+    ListCooperationDocumentSerializer, SetReferenceSerializer)
+from siskerma.app.serializers.history_serializers import \
+    HistoryDetailSerializer
+from siskerma.app.views.base_model_viewset import BaseModelViewSet
 
 
 class CooperationDocumentViewSet(BaseModelViewSet):
     queryset = CooperationDocument.objects.all().order_by('created_at')
     serializer_class = CooperationDocumentSerializer
     filterset_class = DocumentFilter
-    search_fields = ['name', 'number',]
+    search_fields = ['name', 'number', 'document_number']
 
     def get_queryset(self):
         if self.request.user and ('Admin' not in self.request.user.get_role_name):
@@ -107,3 +112,21 @@ class CooperationDocumentViewSet(BaseModelViewSet):
             i.save()
 
         return Response()
+
+    @action(detail=False, methods=['GET'], url_path='export')
+    def export(self, request, *args, **kwargs):
+        from siskerma.app.helpers.queryset_to_workbook import \
+            queryset_to_workbook
+        columns = (
+            'document_number',
+            'name',
+            'type',
+            'status',
+        )
+        # TODO apply filter
+        queryset = self.filter_queryset(self.queryset)
+        workbook = queryset_to_workbook(queryset, columns)
+        response = HttpResponse(
+            content=workbook,  content_type='aapplication/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+        response['Content-Disposition'] = 'attachment; filename="export {}.xlsx"'.format(str(datetime.now()))
+        return response
