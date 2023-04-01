@@ -124,13 +124,15 @@ class CooperationDocumentSerializer(BaseModelSerializer):
 
 
 class ListCooperationDocumentSerializer(BaseModelSerializer):
-    # document_number = serializers.SerializerMethodField()
+    # is_active = serializers.SerializerMethodField()
     type_document = serializers.ReadOnlyField(read_only=True, source='get_type_display')
     status_document = serializers.ReadOnlyField(read_only=True, source='get_status_display')
 
-    # def get_document_number(self, obj):
+    # def get_is_active(self, obj: CooperationDocument):
+    #     if obj.date_end != None:
+    #         return True if obj.date_end > datetime.now().date() else False
 
-    #     return f'041072/{obj.get_type_display()}/{obj.created_at.year}/{obj.number:06d}'
+    # return False if obj.end_date < datetime.now().date() else True
 
     class Meta:
         model = CooperationDocument
@@ -177,3 +179,50 @@ class SetReferenceSerializer(serializers.Serializer):
 
         self.instance = instance
         return self.instance
+
+
+class ImportDataSerializer(serializers.Serializer):
+    file = serializers.FileField()
+
+    def insert_data(self, file):
+
+        import openpyxl
+
+        sheet_name: str = 'kerjasama'
+        wb = openpyxl.load_workbook(file['file'])
+
+        ws = wb[sheet_name]
+
+        kerjasama_headers: list = ['document_number', 'type', 'start_date', 'end_date']
+
+        for row in ws.iter_rows(min_row=2):
+            if row[0].value is None:
+                continue
+            kerjasama_cells = [row[0], row[1], row[2], row[3]]
+            values = []
+            for i, v in enumerate(kerjasama_cells):
+                if i == 0:
+                    values.append(v.value)
+                elif i == 1:
+                    if v.value.upper() == "MOU":
+                        values.append(3)
+                    elif v.value.upper() == 'MOA':
+                        values.append(2)
+                    else:
+                        values.append(1)
+                else:
+                    values.append(v.value)
+
+            data_kerjasama = {}
+
+            for key, cell in zip(kerjasama_headers, values):
+                data_kerjasama[key] = cell
+            data_kerjasama['period'] = 1
+            data_kerjasama['status'] = 7
+            data_kerjasama['updated_by'] = self.context['worker']
+            data_kerjasama['created_by'] = self.context['worker']
+            try:
+
+                CooperationDocument.objects.create(**data_kerjasama)
+            except Exception as e:
+                print(str(e))

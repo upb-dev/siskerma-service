@@ -3,13 +3,14 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from django.db.transaction import atomic
 from django.http import HttpResponse
+from django.db.models import Q
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
 from siskerma.app.filters.document_filter import DocumentFilter
 from siskerma.app.models import CooperationDocument
 from siskerma.app.serializers.cooperation_document_serializers import (
-    AjukanSerializer, AjukanUlangSerializer, CooperationDocumentSerializer,
+    AjukanSerializer, AjukanUlangSerializer, CooperationDocumentSerializer, ImportDataSerializer,
     ListCooperationDocumentSerializer, SetReferenceSerializer)
 from siskerma.app.serializers.history_serializers import \
     HistoryDetailSerializer
@@ -20,7 +21,8 @@ class CooperationDocumentViewSet(BaseModelViewSet):
     queryset = CooperationDocument.objects.all().order_by('created_at')
     serializer_class = CooperationDocumentSerializer
     filterset_class = DocumentFilter
-    search_fields = ['name', 'number', 'document_number']
+    search_fields = ['name', 'number', 'document_number', 'user__name',
+                     'user__responsible_name', 'user__responsible_approval_name', 'user__email']
 
     def get_queryset(self):
         if self.request.user and ('Admin' not in self.request.user.get_role_name):
@@ -38,6 +40,9 @@ class CooperationDocumentViewSet(BaseModelViewSet):
                 #     self.queryset = self.queryset.filter(type__in=[1, 2, 3])
             if self.request.user and ('Dosen' in self.request.user.get_role_name or 'Mahasiswa' in self.request.user.get_role_name):
                 self.queryset = self.queryset.filter(created_by=self.request.user)
+
+        if 'is_active' in self.request.query_params:
+            self.queryset = self.queryset.filter(Q(end_date__gte=datetime.now()) | Q(date_end__gte=datetime.now()))
 
         if 'is_pribadi' in self.request.query_params:
             self.queryset = self.queryset.filter(created_by=self.request.user)
@@ -123,10 +128,18 @@ class CooperationDocumentViewSet(BaseModelViewSet):
             'type',
             'status',
         )
-        # TODO apply filter
+
         queryset = self.filter_queryset(self.queryset)
         workbook = queryset_to_workbook(queryset, columns)
         response = HttpResponse(
             content=workbook,  content_type='aapplication/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
         response['Content-Disposition'] = 'attachment; filename="export {}.xlsx"'.format(str(datetime.now()))
         return response
+
+    @action(detail=False, methods=['POST'], url_path='upload_data')
+    def upload_data(self, request, *args, **kwargs):
+        serializer = ImportDataSerializer(data=self.request.data, context=self.get_serializer_context())
+        serializer.is_valid(raise_exception=True)
+        serializer.insert_data(file=serializer.validated_data)
+
+        return Response()

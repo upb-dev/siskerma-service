@@ -174,18 +174,19 @@ class CooperationDocument(BaseEntryModel):
         (4, 'Disetujui Oleh Universitas'),
         (5, 'Draft Kadaluarsa'),
         (6, 'Ditolak'),
+        (7, 'Import')
 
     )
-    number = models.IntegerField(default=next_number)
+    number = models.IntegerField(default=next_number, null=True)
     document_number = models.CharField(null=True, max_length=50)
-    name = models.CharField(max_length=125)
+    name = models.CharField(max_length=125, null=True)
     type = models.IntegerField(choices=TYPE_CHOICE)
     period = models.IntegerField(choices=PERIOD_CHOICE)
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
     date_end = models.DateField(null=True, blank=True)
     status = models.IntegerField(choices=STATUS_CHOICE)
-    expied_date = models.DateTimeField()
+    expied_date = models.DateTimeField(null=True)
     # step = models.IntegerField(default=0)
     choices_set = models.ManyToManyField(to=CooperationChoice, through='CooperationDocumentChoice', through_fields=(
         'document', 'choice'), related_name='cooperationdocument_set')
@@ -200,18 +201,19 @@ class CooperationDocument(BaseEntryModel):
         # last_id = None
         # number = None
         if self._state.adding:
-            self.document_number = f'041072/{self.get_type_display()}/{datetime.now().year}/{self.number:06d}'
-            # Get the maximum display_id value from the database
-            # last_id = CooperationDocument.objects.all().aggregate(largest=models.Max('number'))['largest']
+            if self.document_number is None:
+                self.document_number = f'041072/{self.get_type_display()}/{datetime.now().year}/{self.number:06d}'
+                # Get the maximum display_id value from the database
+                # last_id = CooperationDocument.objects.all().aggregate(largest=models.Max('number'))['largest']
 
-            # aggregate can return None! Check it first.
-            # If it isn't none, just use the last ID specified (which should be the greatest) and add one to it
-            # if last_id is not None:
-            #     number = int(last_id) + 1
-            # else:
-            #     number = 1
+                # aggregate can return None! Check it first.
+                # If it isn't none, just use the last ID specified (which should be the greatest) and add one to it
+                # if last_id is not None:
+                #     number = int(last_id) + 1
+                # else:
+                #     number = 1
 
-            # self.number = number
+                # self.number = number
             self.expied_date = datetime.now() + relativedelta(months=+6)
 
         super(CooperationDocument, self).save(*args, **kwargs)
