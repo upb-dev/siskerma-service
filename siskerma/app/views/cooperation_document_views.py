@@ -44,6 +44,9 @@ class CooperationDocumentViewSet(BaseModelViewSet):
         if 'is_active' in self.request.query_params:
             self.queryset = self.queryset.filter(Q(end_date__gte=datetime.now()) | Q(date_end__gte=datetime.now()))
 
+        if 'not_active' in self.request.query_params:
+            self.queryset = self.queryset.filter(Q(end_date__lt=datetime.now()) | Q(date_end__lt=datetime.now()))
+
         if 'is_pribadi' in self.request.query_params:
             self.queryset = self.queryset.filter(created_by=self.request.user)
 

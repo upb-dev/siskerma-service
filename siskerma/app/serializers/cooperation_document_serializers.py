@@ -9,6 +9,7 @@ from siskerma.app.serializers.institution_serializer import InstitutionSerialize
 from django.db.transaction import atomic
 
 from rest_framework.exceptions import ValidationError
+from datetime import datetime
 
 
 class CooperationChoiceSerializers(serializers.ModelSerializer):
@@ -124,19 +125,19 @@ class CooperationDocumentSerializer(BaseModelSerializer):
 
 
 class ListCooperationDocumentSerializer(BaseModelSerializer):
-    # is_active = serializers.SerializerMethodField()
+    is_active = serializers.SerializerMethodField()
     type_document = serializers.ReadOnlyField(read_only=True, source='get_type_display')
     status_document = serializers.ReadOnlyField(read_only=True, source='get_status_display')
 
-    # def get_is_active(self, obj: CooperationDocument):
-    #     if obj.date_end != None:
-    #         return True if obj.date_end > datetime.now().date() else False
+    def get_is_active(self, obj: CooperationDocument):
+        if obj.date_end != None:
+            return True if obj.date_end > datetime.now().date() else False
 
-    # return False if obj.end_date < datetime.now().date() else True
+        return False if obj.end_date < datetime.now().date() else True
 
     class Meta:
         model = CooperationDocument
-        fields = ['id', 'document_number', 'name', 'type_document', 'status_document']
+        fields = ['id', 'document_number', 'name', 'type_document', 'is_active', 'status_document']
 
 
 class AjukanUlangSerializer(serializers.Serializer):
