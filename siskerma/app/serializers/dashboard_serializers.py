@@ -46,11 +46,13 @@ class FakultasDataSerializer(serializers.ModelSerializer):
     count = serializers.SerializerMethodField()
 
     def get_count(self, instance):
-        document_data = CooperationDocument.objects.filter(prodi__fakultas=instance, status=3)
-        all_data = CooperationDocument.objects.filter(status=3)
+        document_data = CooperationDocument.objects.filter(prodi__fakultas=instance, status=4)
+        all_data = CooperationDocument.objects.filter(status=4)
 
-        return (document_data.distinct().count() / all_data.distinct().count()) * 100
-
+        if document_data.distinct().count() != 0 and all_data.distinct().count() != 0:
+            return (document_data.distinct().count() / all_data.distinct().count()) * 100
+        return 0
+    
     class Meta:
         model = Fakultas
         fields = ['count', 'name']
@@ -61,7 +63,7 @@ class ProdiDataSerializer(serializers.ModelSerializer):
     count = serializers.SerializerMethodField()
 
     def get_count(self, instance):
-        data = CooperationDocument.objects.filter(prodi=instance, status=3)
+        data = CooperationDocument.objects.filter(prodi=instance, status=4)
         return data.distinct().count()
 
     class Meta:
@@ -96,8 +98,9 @@ class DashboardSerializer(serializers.Serializer):
         data = CooperationDocument.objects.values('prodi_id')
         li = []
         [li.append(x) for x in data if x not in li]
-        percentage = round((len(li) / len(prodi) * 100), 2)
-        return percentage
+        if len(li) != 0 and len(prodi) != 0:
+            return round((len(li) / len(prodi) * 100), 2)
+        return 0
 
     def get_headers(self, instance):
         filter_set = get_query_params(self, instance)
@@ -106,7 +109,7 @@ class DashboardSerializer(serializers.Serializer):
         total_moa = CooperationDocument.objects.filter(**filter_set, type=2).exclude(status=0)
         total_mou = CooperationDocument.objects.filter(**filter_set, type=3).exclude(status=0)
 
-        data_valid = CooperationDocument.objects.filter(**filter_set, status=3)
+        data_valid = CooperationDocument.objects.filter(**filter_set, status=4)
         data_belum_divalidasi = CooperationDocument.objects.filter(**filter_set, status=1)
         data_ditolak = CooperationDocument.objects.filter(**filter_set, status=5)
 
