@@ -84,8 +84,10 @@ class User(BaseEntryModel):
     responsible_approval_name = models.CharField(max_length=125)
     responsible_approval_position = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
-    institution = models.ForeignKey(to='Institution', on_delete=models.RESTRICT, null=True)
-    cooperation_document = models.ForeignKey(to='CooperationDocument', on_delete=models.CASCADE, null=True)
+    institution = models.ForeignKey(
+        to='Institution', on_delete=models.RESTRICT, null=True)
+    cooperation_document = models.ForeignKey(
+        to='CooperationDocument', on_delete=models.CASCADE, null=True)
     created_by = models.ForeignKey(
         'Worker', related_name='user_createdby', null=True, on_delete=models.SET_NULL)
     updated_by = models.ForeignKey(
@@ -105,13 +107,15 @@ class WorkerRole(BaseEntryModel):
     role = models.ForeignKey(to=Role, on_delete=models.RESTRICT)
 
     class Meta:
-        constraints = [models.UniqueConstraint(fields=['worker', 'role'], name='unique_worker_role')]
+        constraints = [models.UniqueConstraint(
+            fields=['worker', 'role'], name='unique_worker_role')]
 
 
 class Worker(AbstractUser):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=True)
     address = models.CharField(max_length=255, null=True)
-    phone = models.CharField(max_length=15, null=True, default=None, blank=True)
+    phone = models.CharField(max_length=15, null=True,
+                             default=None, blank=True)
     roles = models.ManyToManyField(to=Role, through=WorkerRole,
                                    through_fields=('worker', 'role'), related_name='workers')
     prodi = models.ForeignKey(to='Prodi', on_delete=models.RESTRICT, null=True)
@@ -141,6 +145,7 @@ class Worker(AbstractUser):
 
 
 class CooperationChoice(BaseEntryModel):
+    code = models.CharField(max_length=10, null=True, unique=True)
     name = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
 
@@ -191,10 +196,13 @@ class CooperationDocument(BaseEntryModel):
     choices_set = models.ManyToManyField(to=CooperationChoice, through='CooperationDocumentChoice', through_fields=(
         'document', 'choice'), related_name='cooperationdocument_set')
     # user = models.ForeignKey(to=User, on_delete=models.RESTRICT)
-    files = models.ForeignKey(to='CooperationFile', on_delete=models.CASCADE, null=True)
-    evidence = models.ForeignKey(to='CooperationEvidence', on_delete=models.CASCADE, null=True)
+    files = models.ForeignKey(to='CooperationFile',
+                              on_delete=models.CASCADE, null=True)
+    evidence = models.ForeignKey(
+        to='CooperationEvidence', on_delete=models.CASCADE, null=True)
     prodi = models.ForeignKey(to='Prodi', on_delete=models.CASCADE, null=True)
-    parent = models.ForeignKey('self', on_delete=models.RESTRICT, null=True, blank=True)
+    parent = models.ForeignKey(
+        'self', on_delete=models.RESTRICT, null=True, blank=True)
 
     def save(self, *args, **kwargs):
         # This means that the model isn't saved to the database yet
@@ -221,31 +229,37 @@ class CooperationDocument(BaseEntryModel):
 
 class CooperationFile(BaseEntryModel):
     # coopration_document = models.ForeignKey(to=CooperationDocument, on_delete=models.RESTRICT)
-    document = models.FileField(upload_to=path_and_rename, max_length=255, storage=gd_storage)
+    document = models.FileField(
+        upload_to=path_and_rename, max_length=255, storage=gd_storage)
 
 
 class CooperationEvidence(BaseEntryModel):
-    photo = models.FileField(upload_to=path_and_rename, max_length=255, storage=gd_storage)
+    photo = models.FileField(upload_to=path_and_rename,
+                             max_length=255, storage=gd_storage)
     url = models.URLField()
 
 
 class CooperationDocumentChoice(BaseEntryModel):
-    document = models.ForeignKey(to=CooperationDocument, on_delete=models.CASCADE)
+    document = models.ForeignKey(
+        to=CooperationDocument, on_delete=models.CASCADE)
     choice = models.ForeignKey(to=CooperationChoice, on_delete=models.CASCADE)
 
 
 class Institution(BaseEntryModel):
+    code = models.CharField(max_length=10, null=True)
     name = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
 
 
 class Fakultas(BaseEntryModel):
     name = models.CharField(max_length=125)
+    code = models.CharField(max_length=10, null=True, unique=True)
     is_active = models.BooleanField(default=True)
 
 
 class History(BaseEntryModel):
-    document = models.ForeignKey(to=CooperationDocument, on_delete=models.CASCADE)
+    document = models.ForeignKey(
+        to=CooperationDocument, on_delete=models.CASCADE)
     label = models.CharField(max_length=125, default='Pengajuan')
     number = models.IntegerField(default=1)
 
@@ -284,4 +298,5 @@ class HistoryDetail(BaseEntryModel):
 class Prodi(BaseEntryModel):
     name = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
+    code = models.CharField(max_length=10, null=True, unique=True)
     fakultas = models.ForeignKey(to=Fakultas, on_delete=models.RESTRICT)

@@ -1,5 +1,5 @@
 from siskerma.app.serializers.base_models_serializer import BaseModelSerializer
-from siskerma.app.models import CooperationDocument, CooperationChoice, History, Institution, User
+from siskerma.app.models import CooperationDocument, CooperationChoice, CooperationDocumentChoice, History, Institution, Prodi, User
 from rest_framework import serializers
 from siskerma.app.serializers.cooperation_evidence_serializer import CooperationEvidenceSerializer
 from siskerma.app.serializers.cooperation_file_serializer import CooperationFileSerializer
@@ -20,7 +20,8 @@ class CooperationChoiceSerializers(serializers.ModelSerializer):
 
 class UserSerializers(BaseModelSerializer):
     id = serializers.UUIDField(required=False)
-    institution_data = InstitutionSerializer(read_only=True, source='institution')
+    institution_data = InstitutionSerializer(
+        read_only=True, source='institution')
     institution = serializers.PrimaryKeyRelatedField(
         queryset=Institution.objects.all(), write_only=True, allow_empty=True, )
 
@@ -34,18 +35,23 @@ class UserSerializers(BaseModelSerializer):
 
 class CooperationDocumentSerializer(BaseModelSerializer):
     # document_number = serializers.SerializerMethodField()
-    type_document = serializers.ReadOnlyField(read_only=True, source='get_type_display')
-    period_document = serializers.ReadOnlyField(read_only=True, source='get_period_display')
-    status_document = serializers.ReadOnlyField(read_only=True, source='get_status_display')
+    type_document = serializers.ReadOnlyField(
+        read_only=True, source='get_type_display')
+    period_document = serializers.ReadOnlyField(
+        read_only=True, source='get_period_display')
+    status_document = serializers.ReadOnlyField(
+        read_only=True, source='get_status_display')
     expied_date = serializers.DateTimeField(read_only=True)
 
     kerjasama = serializers.PrimaryKeyRelatedField(queryset=CooperationChoice.objects.all(
     ), write_only=True, allow_empty=True, many=True, source='choices_set')
-    bentuk_kerjasama = CooperationChoiceSerializers(many=True, read_only=True, source='choices_set')
+    bentuk_kerjasama = CooperationChoiceSerializers(
+        many=True, read_only=True, source='choices_set')
     partner = serializers.SerializerMethodField()
     files = CooperationFileSerializer(read_only=True)
     evidence = CooperationEvidenceSerializer(read_only=True)
-    history = HistorySerializer(many=True, read_only=True, source='history_set')
+    history = HistorySerializer(
+        many=True, read_only=True, source='history_set')
     partner_data = UserSerializers(write_only=True, many=True)
 
     def get_partner(self, instance: CooperationDocument):
@@ -77,16 +83,20 @@ class CooperationDocumentSerializer(BaseModelSerializer):
             id = i.get('id', None)
             if id:
                 try:
-                    user = User.objects.get(id=id, cooperation_document=instance)
+                    user = User.objects.get(
+                        id=id, cooperation_document=instance)
                     user.name = i.get('name', user.name)
                     user.address = i.get('address', user.address)
                     user.country = i.get('country', user.country)
                     user.email = i.get('email', user.email)
                     user.is_active = i.get('is_active', user.is_active)
                     user.institution = i.get('institution', user.institution)
-                    user.responsible_name = i.get('responsible_name', user.responsible_name)
-                    user.responsible_position = i.get('responsible_position', user.responsible_position)
-                    user.responsible_approval_name = i.get('responsible_approval_name', user.responsible_approval_name)
+                    user.responsible_name = i.get(
+                        'responsible_name', user.responsible_name)
+                    user.responsible_position = i.get(
+                        'responsible_position', user.responsible_position)
+                    user.responsible_approval_name = i.get(
+                        'responsible_approval_name', user.responsible_approval_name)
                     user.responsible_approval_position = i.get(
                         'responsible_approval_position', user.responsible_approval_position)
                     user.updated_by = request.user
@@ -100,7 +110,8 @@ class CooperationDocumentSerializer(BaseModelSerializer):
                     i['created_by'] = request.user
 
                     try:
-                        user = User.objects.create(cooperation_document=instance, **i)
+                        user = User.objects.create(
+                            cooperation_document=instance, **i)
                     except Exception as e:
                         raise ValidationError({'detail': e})
                 user_ids.append(user.id)
@@ -109,7 +120,8 @@ class CooperationDocumentSerializer(BaseModelSerializer):
                 i['created_by'] = request.user
 
                 try:
-                    user = User.objects.create(cooperation_document=instance, **i)
+                    user = User.objects.create(
+                        cooperation_document=instance, **i)
                 except Exception as e:
                     raise ValidationError({'detail': e})
 
@@ -126,8 +138,10 @@ class CooperationDocumentSerializer(BaseModelSerializer):
 
 class ListCooperationDocumentSerializer(BaseModelSerializer):
     is_active = serializers.SerializerMethodField()
-    type_document = serializers.ReadOnlyField(read_only=True, source='get_type_display')
-    status_document = serializers.ReadOnlyField(read_only=True, source='get_status_display')
+    type_document = serializers.ReadOnlyField(
+        read_only=True, source='get_type_display')
+    status_document = serializers.ReadOnlyField(
+        read_only=True, source='get_status_display')
 
     def get_is_active(self, obj: CooperationDocument):
         if obj.date_end != None:
@@ -137,7 +151,8 @@ class ListCooperationDocumentSerializer(BaseModelSerializer):
 
     class Meta:
         model = CooperationDocument
-        fields = ['id', 'document_number', 'name', 'type_document', 'is_active', 'status_document']
+        fields = ['id', 'document_number', 'name',
+                  'type_document', 'is_active', 'status_document']
 
 
 class AjukanUlangSerializer(serializers.Serializer):
@@ -173,7 +188,8 @@ class SetReferenceSerializer(serializers.Serializer):
     id = serializers.UUIDField()
 
     def set_referenc(self, validated_data, instance: CooperationDocument):
-        doc: CooperationDocument = CooperationDocument.objects.get(id=validated_data['id'])
+        doc: CooperationDocument = CooperationDocument.objects.get(
+            id=validated_data['id'])
         instance.parent = doc
 
         instance.save()
@@ -194,13 +210,24 @@ class ImportDataSerializer(serializers.Serializer):
 
         ws = wb[sheet_name]
 
-        kerjasama_headers: list = ['document_number', 'type', 'start_date', 'end_date']
+        kerjasama_headers: list = [
+            'document_number', 'type', 'start_date', 'end_date']
+
+        partner_headers: list = ['name', 'country', 'address', 'email', 'responsible_name',
+                                 'responsible_position', 'responsible_approval_name', 'responsible_approval_position']
 
         for row in ws.iter_rows(min_row=2):
+            cooperation_data: CooperationDocument = None
+            prodi_data: Prodi = None
+            type_kerjasama: CooperationChoice = None
+            institusi: Institution = None
+            partner: User = None
+
             if row[0].value is None:
                 continue
-            kerjasama_cells = [row[0], row[1], row[2], row[3]]
+            kerjasama_cells = [row[1], row[3], row[4], row[5]]
             values = []
+
             for i, v in enumerate(kerjasama_cells):
                 if i == 0:
                     values.append(v.value)
@@ -222,8 +249,67 @@ class ImportDataSerializer(serializers.Serializer):
             data_kerjasama['status'] = 7
             data_kerjasama['updated_by'] = self.context['worker']
             data_kerjasama['created_by'] = self.context['worker']
-            try:
 
-                CooperationDocument.objects.create(**data_kerjasama)
+            # try to create document
+            try:
+                cooperation_data = CooperationDocument.objects.create(
+                    **data_kerjasama)
             except Exception as e:
                 print(str(e))
+
+            # get prodi code
+            prodi_code = row[6].value.upper()
+
+            # get prodi data
+            try:
+                prodi_data = Prodi.objects.get(code=prodi_code)
+            except Exception as e:
+                print(str(e))
+
+            # set prodi to dokument
+            cooperation_data.prodi = prodi_data
+            cooperation_data.save()
+
+            # get type kerjasama code
+            choice_code = row[7].value.upper()
+
+            # get coice
+            try:
+                type_kerjasama = CooperationChoice.objects.get(
+                    code=choice_code)
+            except Exception as e:
+                print(str(e))
+
+            # create cooperation document choice
+            try:
+                CooperationDocumentChoice.objects.create(
+                    document=cooperation_data, choice=type_kerjasama)
+            except Exception as e:
+                print(str(e))
+
+            # partner data
+            partner_cell = [row[2], row[8], row[9],
+                            row[10], row[11], row[12], row[13], row[14]]
+
+            data_partner = {}
+
+            for key, cell in zip(partner_headers, partner_cell):
+                data_partner[key] = cell.value
+            data_partner['updated_by'] = self.context['worker']
+            data_partner['created_by'] = self.context['worker']
+
+            try:
+                partner = User.objects.create(**data_partner)
+            except Exception as e:
+                print(str(e))
+
+            insitusi_data = row[15].value
+
+            try:
+                institusi = Institution.objects.get(
+                    code=insitusi_data)
+            except Exception as e:
+                print(str(e))
+
+            partner.institution = institusi
+            partner.save()
