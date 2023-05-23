@@ -1,5 +1,5 @@
 from siskerma.app.serializers.base_models_serializer import BaseModelSerializer
-from siskerma.app.models import CooperationDocument, CooperationChoice, CooperationDocumentChoice, History, Institution, Prodi, User
+from siskerma.app.models import CooperationDocument, CooperationChoice, CooperationDocumentChoice, Fakultas, History, Institution, Prodi, User
 from rest_framework import serializers
 from siskerma.app.serializers.cooperation_evidence_serializer import CooperationEvidenceSerializer
 from siskerma.app.serializers.cooperation_file_serializer import CooperationFileSerializer
@@ -265,6 +265,14 @@ class ImportDataSerializer(serializers.Serializer):
                 prodi_data = Prodi.objects.get(code=prodi_code)
             except Exception as e:
                 print(str(e))
+
+                # TODO
+                try:
+                    fakultas_data: Fakultas = Fakultas.objects.filter(
+                        prodi__code=prodi_code)
+                    prodi_data = fakultas_data[0]
+                except Exception as e:
+                    print(str(e))
 
             # set prodi to dokument
             cooperation_data.prodi = prodi_data
